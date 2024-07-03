@@ -8,12 +8,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "type_anime")
-public class Type_anime {
+@Table(name = "Status_tbl")
+public class StatusEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "anime_type")
-    private String animeType;
+    private String status;
+
 }
+

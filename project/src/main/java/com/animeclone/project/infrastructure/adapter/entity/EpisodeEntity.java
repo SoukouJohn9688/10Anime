@@ -9,14 +9,17 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-@Table(name = "user_tbl")
-public class User {
+@Table(name = "Episode_tbl")
+public class EpisodeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String username;
-    private String password;
-    private String role;
+    private Integer id;
+
+    private Integer animeId;
+    private enum TypeLanguage {
+        JAPONES,
+        INGLES}
+    private String name;
+
 }

@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Comments")
-public class Comments {
+@Table(name = "Studio_tbl")
+public class StudioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String content;
-}
+    private String name;
 
+}

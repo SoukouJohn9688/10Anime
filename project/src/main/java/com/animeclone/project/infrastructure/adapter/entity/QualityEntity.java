@@ -1,6 +1,5 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Score")
-public class Score {
+@Table(name = "quality_tbl")
+public class QualityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private Double value;
+    private Long id;
+    private String value;
 
 }

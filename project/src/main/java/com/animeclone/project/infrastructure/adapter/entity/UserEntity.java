@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "quality_tbl")
-public class Quality {
+
+@Table(name = "user_tbl")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String value;
-
+    private long id;
+    private String username;
+    private String password;
+    private String role;
 }
