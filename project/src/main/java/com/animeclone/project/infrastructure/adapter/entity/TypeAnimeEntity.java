@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -13,7 +15,12 @@ public class TypeAnimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "type_anime_id")
+    private long typeAnimeId;
     @Column(name = "anime_type")
     private String animeType;
+
+
+    @OneToMany(mappedBy = "typeAnime")
+    private List<AnimeEntity> animes;
 }

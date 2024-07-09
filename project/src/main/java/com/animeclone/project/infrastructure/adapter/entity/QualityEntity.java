@@ -14,7 +14,8 @@ public class QualityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "quality_id")
+    private Long qualityId;
     private String value;
 
 }

@@ -13,8 +13,12 @@ public class StatusEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "status_id")
+    private long statusId;
     private String status;
+
+    @OneToOne
+    private AnimeEntity anime;
 
 }
 
