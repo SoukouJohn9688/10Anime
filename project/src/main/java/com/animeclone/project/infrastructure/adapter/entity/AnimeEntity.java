@@ -17,22 +17,13 @@ import java.time.LocalDateTime;
 public class AnimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    //no c donde va el enum
-    private enum TypeAnime {
-        ACTION,
-        DRAMA,
-        COMEDY,
-        FANTASY
-    }
+    private long animeId;
 
     private LocalDateTime dateAired;
     private float duration;
     private int views;
     private String premiere;
     private String quality;
-    private enum status {
-        ONAIR
-    }
+
     private String description;
 }
