@@ -26,11 +26,11 @@ public class EpisodeEntity {
     private String name;
 
     @ManyToOne
-    private AnimeEntity anime;
+    private AnimeEntity animeEntity;
 
 
-    @OneToMany(mappedBy = "episodeentity")
-    private List<CommentsEntity> comments;
+    @OneToMany(mappedBy = "episodeEntity")
+    private List<CommentsEntity> commentsEntity;
 
 
     @ManyToMany

@@ -21,10 +21,10 @@ public class CommentsEntity {
 
 
     @ManyToOne
-    private UserEntity user;
+    private UserEntity userEntity;
 
     @ManyToOne
-    private EpisodeEntity episode;
+    private EpisodeEntity episodeEntity;
 
 }
 

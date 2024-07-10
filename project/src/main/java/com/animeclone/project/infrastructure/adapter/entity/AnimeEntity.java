@@ -28,7 +28,7 @@ public class AnimeEntity {
     private String quality;
     private String description;
 
-    @OneToMany(mappedBy = "animeentity")
+    @OneToMany(mappedBy = "animeEntity")
     private List<EpisodeEntity> episodes;
 
     @OneToOne

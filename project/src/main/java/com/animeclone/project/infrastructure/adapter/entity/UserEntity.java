@@ -24,6 +24,6 @@ public class UserEntity {
     private String role;
 
 
-    @OneToMany(mappedBy = "userentity")
+    @OneToMany(mappedBy = "userEntity")
     private List<CommentsEntity> comments;
 }
