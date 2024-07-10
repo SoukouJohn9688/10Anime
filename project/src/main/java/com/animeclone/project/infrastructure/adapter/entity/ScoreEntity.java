@@ -15,7 +15,11 @@ public class ScoreEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "score_id")
+    private long scoreId;
     private Double value;
+
+    @OneToOne
+    private AnimeEntity anime;
 
 }

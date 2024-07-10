@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AnimeDboMapper {
-    @Mapping(source = "animeId", target = "id")
+    @Mapping(source = "id", target = "animeId")
     @Mapping(source = "dateAired", target = "dateAired")
     @Mapping(source = "duration", target = "duration")
     @Mapping(source = "views", target = "views")

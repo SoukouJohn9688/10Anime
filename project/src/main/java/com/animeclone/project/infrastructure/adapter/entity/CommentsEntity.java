@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
+import com.animeclone.project.domain.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,16 @@ public class CommentsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "comments_id")
+    private long commentsId;
     private String content;
+
+
+    @ManyToOne
+    private UserEntity userEntity;
+
+    @ManyToOne
+    private EpisodeEntity episodeEntity;
+
 }
 
