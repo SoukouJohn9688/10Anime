@@ -1,7 +1,7 @@
 package com.animeclone.project.application.service;
 
 import com.animeclone.project.application.usecases.AnimeService;
-import com.animeclone.project.domain.model.dto.AnimeDTO;
+import com.animeclone.project.domain.model.dto.anime.RequestAnimeDTO;
 
 import java.util.List;
 
@@ -9,27 +9,27 @@ public class AnimeServiceImpl implements AnimeService {
 
 
     @Override
-    public AnimeDTO registerAnime() {
+    public RequestAnimeDTO registerAnime() {
         return null;
     }
 
     @Override
-    public AnimeDTO getById(Long id) {
+    public RequestAnimeDTO getById(Long id) {
         return null;
     }
 
     @Override
-    public List<AnimeDTO> getAllById(Long id) {
+    public List<RequestAnimeDTO> getAllById(Long id) {
         return List.of();
     }
 
     @Override
-    public AnimeDTO updateAnimeById(Long id, AnimeDTO request) {
+    public RequestAnimeDTO updateAnimeById(Long id, RequestAnimeDTO request) {
         return null;
     }
 
     @Override
-    public AnimeDTO deleteAnime(Long Id) {
+    public RequestAnimeDTO deleteAnime(Long Id) {
         return null;
     }
 }

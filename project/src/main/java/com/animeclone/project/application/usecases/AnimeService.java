@@ -1,15 +1,15 @@
 package com.animeclone.project.application.usecases;
 
-import com.animeclone.project.domain.model.dto.AnimeDTO;
+import com.animeclone.project.domain.model.dto.anime.RequestAnimeDTO;
 
 import java.util.List;
 
 public interface AnimeService {
 
 
-    AnimeDTO registerAnime();
-    AnimeDTO getById(Long id);
-    List<AnimeDTO> getAllById(Long id);
-    AnimeDTO updateAnimeById(Long id, AnimeDTO request);
-    AnimeDTO deleteAnime(Long Id);
+    RequestAnimeDTO registerAnime();
+    RequestAnimeDTO getById(Long id);
+    List<RequestAnimeDTO> getAllById(Long id);
+    RequestAnimeDTO updateAnimeById(Long id, RequestAnimeDTO request);
+    RequestAnimeDTO deleteAnime(Long Id);
 }
