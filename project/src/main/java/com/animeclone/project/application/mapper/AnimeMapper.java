@@ -19,6 +19,7 @@ public interface AnimeMapper {
     @Mapping(source = "views", target = "views")
     @Mapping(source = "premiere", target = "premiere")
     @Mapping(source = "quality", target = "quality")
+    @Mapping(source = "score", target = "score")
     Anime DTOtoDomain(RequestAnimeDTO request);
 
     @InheritInverseConfiguration

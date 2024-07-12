@@ -6,6 +6,6 @@ public record ResponseAnimeDTO(LocalDateTime dateAired,
                                float duration,
                                int views,
                                String premiere,
-                               String quality,
-                               String description) {
+                               String description,
+                               Double score) {
 }

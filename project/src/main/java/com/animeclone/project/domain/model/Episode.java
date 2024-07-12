@@ -12,13 +12,16 @@ public class Episode {
     private Integer id;
 
 
-    private enum TypeLanguage {
+    private enum TypeLanguageEnum {
         JAPONES,
         INGLES}
+    private TypeLanguageEnum typeLanguage;
+
     private String name;
-    private enum quality{
+    private enum qualityEnum{
         mq720p,
         hq1080p,
         hq1440p
     }
+    private qualityEnum qualityEnum;
 }

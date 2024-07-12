@@ -7,10 +7,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-
-
-
-
 @Data
 @Getter
 @Setter
@@ -23,7 +19,6 @@ public class Anime {
     private float duration;
     private int views;
     private String premiere;
-    private String quality;
     private String description;
 
     private Double score;
