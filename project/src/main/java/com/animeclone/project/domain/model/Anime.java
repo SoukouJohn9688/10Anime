@@ -22,7 +22,11 @@ public class Anime {
         ACTION,
         DRAMA,
         COMEDY,
-        FANTASY
+        FANTASY,
+        SLICEOFLIFE,
+        ROMCOM,
+        MARTIALARTS,
+        MECHA
     }
 
     private LocalDateTime dateAired;
