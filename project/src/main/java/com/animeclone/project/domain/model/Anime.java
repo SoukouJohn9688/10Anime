@@ -26,4 +26,22 @@ public class Anime {
     private String quality;
     private String description;
 
+    private Double score;
+
+    private enum status{
+        ONGOING,
+        COMPLETED,
+        HALTED,
+        CANCELLED
+    }
+
+
+    private enum animeType{
+        OVA,
+        ONA,
+        MOVIE,
+        TVSERIES,
+
+    }
+
 }

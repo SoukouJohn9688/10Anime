@@ -8,6 +8,7 @@ import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -27,18 +28,33 @@ public class AnimeEntity {
     private String premiere;
     private String quality;
     private String description;
+    private Double score;
 
+
+    private enum status{
+        ONGOING,
+        COMPLETED,
+        HALTED,
+        CANCELLED
+    }
+
+    private enum animeType{
+        OVA,
+        ONA,
+        MOVIE,
+        TVSERIES,
+
+    }
     @OneToMany(mappedBy = "animeEntity")
     private List<EpisodeEntity> episodes;
 
-    @OneToOne
-    private StatusEntity status;
 
-    @OneToOne
-    private ScoreEntity score;
 
-    @ManyToOne
-    private TypeAnimeEntity typeAnime;
+//    @OneToOne
+//    private ScoreEntity score;
+
+//    @ManyToOne
+//    private TypeAnimeEntity typeAnime;
 
     @ManyToMany
     @JoinTable(

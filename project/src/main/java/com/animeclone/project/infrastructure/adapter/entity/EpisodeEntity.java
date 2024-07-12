@@ -31,14 +31,12 @@ public class EpisodeEntity {
 
     @OneToMany(mappedBy = "episodeEntity")
     private List<CommentsEntity> commentsEntity;
+    private enum quality{
+        mq720p,
+        hq1080p,
+        hq1440p
+    }
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "episode_quality",
-            joinColumns = @JoinColumn(name = "quality_id"),
-            inverseJoinColumns = @JoinColumn(name = "episode_id")
-    )
-    private List<QualityEntity> qualitys;
 
 }
