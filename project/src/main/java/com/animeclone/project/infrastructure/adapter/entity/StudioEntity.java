@@ -14,7 +14,8 @@ public class StudioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "studio_id")
+    private long studioId;
     private String name;
 
 }

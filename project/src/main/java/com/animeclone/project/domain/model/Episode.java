@@ -16,4 +16,9 @@ public class Episode {
         JAPONES,
         INGLES}
     private String name;
+    private enum quality{
+        mq720p,
+        hq1080p,
+        hq1440p
+    }
 }
