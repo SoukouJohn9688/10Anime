@@ -1,6 +1,7 @@
 package com.animeclone.project.domain.model;
 
 
+import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,15 +11,18 @@ import lombok.Setter;
 @Setter
 public class Episode {
     private Integer id;
-
-
-    private enum TypeLanguage {
-        JAPONES,
-        INGLES}
     private String name;
-    private enum quality{
-        mq720p,
-        hq1080p,
-        hq1440p
+
+    private enum TypeLanguageEnum {
+        JAPANESE,
+        ENGLISH}
+    private TypeLanguageEnum typeLanguageEnum;
+
+    private enum QualityEnum{
+        MQ720p,
+        HQ1080p,
+        HQ1440p
     }
+
+    private QualityEnum qualityEnum;
 }

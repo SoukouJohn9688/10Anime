@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
+import com.animeclone.project.domain.model.Episode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,12 +19,23 @@ public class EpisodeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "episode_id")
     private Integer episodeId;
-
-    private Integer animeId;
-    private enum TypeLanguage {
-        JAPONES,
-        INGLES}
     private String name;
+
+
+
+    private enum TypeLanguageEnum {
+        JAPANESE,
+        ENGLISH}
+    private TypeLanguageEnum typeLanguageEnum;
+
+    private enum QualityEnum{
+        MQ720p,
+        HQ1080p,
+        HQ1440p
+    }
+
+   private QualityEnum qualityEnum;
+
 
     @ManyToOne
     private AnimeEntity animeEntity;
@@ -31,11 +43,7 @@ public class EpisodeEntity {
 
     @OneToMany(mappedBy = "episodeEntity")
     private List<CommentsEntity> commentsEntity;
-    private enum quality{
-        mq720p,
-        hq1080p,
-        hq1440p
-    }
+
 
 
 
