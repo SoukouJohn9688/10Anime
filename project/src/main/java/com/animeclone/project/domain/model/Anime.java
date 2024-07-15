@@ -8,10 +8,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-
-
-
-
 @Data
 @Getter
 @Setter
@@ -25,26 +21,26 @@ public class Anime {
     private int views;
     private String premiere;
     private String description;
-
+    private String name;
     private Double score;
 
-    private enum StatusEnum{
+    public enum StatusEnum{
         ONGOING,
         COMPLETED,
         HALTED,
         CANCELLED
     }
 
-    private StatusEnum statusEnum;
+    public StatusEnum statusEnum;
 
 
-    private enum AnimeTypeEnum{
+    public enum AnimeTypeEnum{
         OVA,
         ONA,
         MOVIE,
         TVSERIES,
 
     }
-    private AnimeTypeEnum animeTypeEnum;
+    public AnimeTypeEnum animeTypeEnum;
 
 }

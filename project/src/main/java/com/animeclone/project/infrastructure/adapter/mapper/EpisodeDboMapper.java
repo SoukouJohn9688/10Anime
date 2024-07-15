@@ -12,9 +12,11 @@ public interface EpisodeDboMapper {
 
 
     @Mapping(source = "id", target = "episodeId")
-    @Mapping(source = "content", target = "content")
+    //@Mapping(source = "content", target = "content")
     @Mapping(source = "qualityEnum", target = "qualityEnum")
     @Mapping(source = "typeLanguageEnum", target = "typeLanguageEnum")
+    @Mapping(source = "name", target = "name")
+
     EpisodeEntity toDbo(Episode domain);
 
     @InheritInverseConfiguration

@@ -28,25 +28,25 @@ public class AnimeEntity {
     private String premiere;
     private String description;
     private Double score;
+    private String name;
 
-
-    private enum StatusEnum{
+    public enum StatusEnum{
         ONGOING,
         COMPLETED,
         HALTED,
         CANCELLED
     }
 
-    private StatusEnum statusEnum;
+    public StatusEnum statusEnum;
 
-    private enum AnimeTypeEnum{
+    public enum AnimeTypeEnum{
         OVA,
         ONA,
         MOVIE,
         TVSERIES,
 
     }
-    private AnimeTypeEnum animeTypeEnum;
+    public AnimeTypeEnum animeTypeEnum;
 
     @OneToMany(mappedBy = "animeEntity")
     private List<EpisodeEntity> episodes;

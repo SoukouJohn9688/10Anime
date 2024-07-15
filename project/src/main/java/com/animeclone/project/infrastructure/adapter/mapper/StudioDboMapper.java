@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 
 public interface StudioDboMapper {
-    @Mapping(source = "id", target = "Id")
+    //@Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     StudioEntity toDbo(Studio domain);
 

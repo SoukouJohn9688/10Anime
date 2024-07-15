@@ -23,18 +23,18 @@ public class EpisodeEntity {
 
 
 
-    private enum TypeLanguageEnum {
+    public enum TypeLanguageEnum {
         JAPANESE,
         ENGLISH}
-    private TypeLanguageEnum typeLanguageEnum;
+    public TypeLanguageEnum typeLanguageEnum;
 
-    private enum QualityEnum{
+    public enum QualityEnum{
         MQ720p,
         HQ1080p,
         HQ1440p
     }
 
-   private QualityEnum qualityEnum;
+   public QualityEnum qualityEnum;
 
 
     @ManyToOne
