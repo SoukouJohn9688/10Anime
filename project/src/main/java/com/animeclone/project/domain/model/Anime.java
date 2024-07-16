@@ -1,5 +1,6 @@
 package com.animeclone.project.domain.model;
 
+import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -20,23 +21,26 @@ public class Anime {
     private int views;
     private String premiere;
     private String description;
-
+    private String name;
     private Double score;
 
-    private enum status{
+    public enum StatusEnum{
         ONGOING,
         COMPLETED,
         HALTED,
         CANCELLED
     }
 
+    public StatusEnum statusEnum;
 
-    private enum animeType{
+
+    public enum AnimeTypeEnum{
         OVA,
         ONA,
         MOVIE,
         TVSERIES,
 
     }
+    public AnimeTypeEnum animeTypeEnum;
 
 }

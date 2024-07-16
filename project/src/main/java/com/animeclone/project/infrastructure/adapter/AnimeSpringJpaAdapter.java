@@ -45,7 +45,8 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
 
     @Override
     public List<Anime> getAll() {
-        return List.of();
+        List<Anime> listaMapped=animeDboMapper.toAnimeDomainList(animeRepository.findAll());
+        return listaMapped;
     }
 
     @Override

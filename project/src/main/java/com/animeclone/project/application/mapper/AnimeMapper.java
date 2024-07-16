@@ -20,14 +20,15 @@ public interface AnimeMapper {
     @Mapping(source = "duration", target = "duration")
     @Mapping(source = "views", target = "views")
     @Mapping(source = "premiere", target = "premiere")
-    @Mapping(source = "quality", target = "quality")
+    //@Mapping(source = "quality", target = "quality")
     @Mapping(source = "score", target = "score")
+    @Mapping(source = "name", target = "name")
     Anime DTOtoDomain(RequestAnimeDTO request);
 
     @InheritInverseConfiguration
     ResponseAnimeDTO DomainToResponse(Anime anime);
 
-    default List<ResponseAnimeDTO> toGameResponseList(List<Anime> animes) {
+    default List<ResponseAnimeDTO> toAnimeResponseList(List<Anime> animes) {
         return animes.stream()
                 .map(this::DomainToResponse)
                 .toList();

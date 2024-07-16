@@ -1,15 +1,15 @@
 package com.animeclone.project.domain.model.dto.episode;
 
-public record RequestEpisodeDTO(TypeLanguage typeLanguage, String name, Quality quality) {
+public record RequestEpisodeDTO(TypeLanguageEnum typeLanguageEnum, String name, QualityEnum qualityEnum) {
 
-    public enum TypeLanguage {
-        JAPONES,
-        INGLES
+    public enum TypeLanguageEnum {
+        JAPANESE,
+        ENGLISH
     }
 
-    public enum Quality {
-        MQ720P,
-        HQ1080P,
-        HQ1440P
+    public enum QualityEnum{
+        MQ720p,
+        HQ1080p,
+        HQ1440p
     }
 }

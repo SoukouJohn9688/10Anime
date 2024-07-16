@@ -13,8 +13,8 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface EpisodeMapper {
 
-    @Mapping(source = "typeLanguage", target = "typeLanguage")
-    @Mapping(source = "quality", target = "qualityEnum")
+    @Mapping(source = "typeLanguageEnum", target = "typeLanguageEnum")
+    @Mapping(source = "qualityEnum", target = "qualityEnum")
     @Mapping(source = "name", target = "name")
     Episode DTOtoDomain(RequestEpisodeDTO request);
 
