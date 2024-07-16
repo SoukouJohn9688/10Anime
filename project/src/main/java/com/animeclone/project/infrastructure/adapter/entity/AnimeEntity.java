@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -49,7 +50,7 @@ public class AnimeEntity {
     public AnimeTypeEnum animeTypeEnum;
 
     @OneToMany(mappedBy = "animeEntity")
-    private List<EpisodeEntity> episodes;
+    private Set<EpisodeEntity> episodes;
 
 
 
@@ -65,7 +66,7 @@ public class AnimeEntity {
             joinColumns = @JoinColumn(name = "anime_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private List<GenreEntity> genres;
+    private Set<GenreEntity> genres;
 
 
     @ManyToMany
@@ -74,7 +75,7 @@ public class AnimeEntity {
             joinColumns = @JoinColumn(name = "anime_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private List<StudioEntity> studios;
+    private Set<StudioEntity> studios;
 
 
 
