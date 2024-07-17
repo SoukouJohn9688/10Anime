@@ -1,5 +1,6 @@
 package com.animeclone.project.domain.model;
 
+import com.animeclone.project.domain.model.dto.genre.GenreDTO;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Getter
@@ -23,6 +26,7 @@ public class Anime {
     private String description;
     private String name;
     private Double score;
+    private Set<Genre> genres;
 
     public enum StatusEnum{
         ONGOING,

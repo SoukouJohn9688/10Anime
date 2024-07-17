@@ -8,18 +8,14 @@ import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/anime")
+@RequestMapping("/api/v1/anime")
 public class AnimeController {
 
     @Autowired
     private AnimeService animeService;
-
-
-    @GetMapping
-    private String cargarLista(){
-        return "Probandooooooooo";
-    }
 
 
 
@@ -27,6 +23,11 @@ public class AnimeController {
     private ResponseAnimeDTO registerAnime(@RequestBody RequestAnimeDTO request){
 
         return animeService.registerAnime(request);
+    }
+
+    @GetMapping("/find")
+    private List<ResponseAnimeDTO> getAllAnimes(){
+        return animeService.getAll();
     }
 
 }

@@ -11,5 +11,5 @@ public interface AnimePersistencePort {
     List<Anime> getAll();
     void deleteById(Long id);
     Anime update(Anime request);
-
+    Anime addGenreToAnime(Anime request);
 }
