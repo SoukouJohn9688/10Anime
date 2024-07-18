@@ -9,6 +9,8 @@ import com.animeclone.project.domain.port.GenrePersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @RequiredArgsConstructor
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -22,6 +24,13 @@ public class GenreServiceImpl implements GenreService {
         Genre convertDomain=genreMapper.DTOtoDomain(request);
         Genre registeredGenre=genrePersistencePort.create(convertDomain);
         return genreMapper.DomainToResponse(registeredGenre);
+    }
+
+    @Override
+    public Set<ResponseGenreDTO> getGenres() {
+
+
+        return genreMapper.toGenresResponseList(genrePersistencePort.getAll());
     }
 
 }

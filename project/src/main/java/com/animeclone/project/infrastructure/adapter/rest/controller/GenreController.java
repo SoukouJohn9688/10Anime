@@ -6,11 +6,11 @@ import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.model.dto.genre.ResponseGenreDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,9 +20,17 @@ public class GenreController {
     private final GenreService genreService;
 
     @PostMapping("/registry")
-    private ResponseGenreDTO registerGenre(@Validated @RequestBody RequestGenreDTO request){
+    private ResponseGenreDTO registerGenre(@RequestBody RequestGenreDTO request){
 
         return genreService.registerGenre(request);
+    }
+
+    @GetMapping
+    private ResponseEntity<Set<ResponseGenreDTO>> getAll(){
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(genreService.getGenres());
+
     }
 
 }

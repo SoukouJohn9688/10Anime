@@ -10,6 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 public class Genre {
 
-    private long id;
+    private long genreId;
     private String name;
 }
