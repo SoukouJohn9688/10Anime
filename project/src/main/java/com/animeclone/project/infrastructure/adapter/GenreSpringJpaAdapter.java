@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @RequiredArgsConstructor
 @Service
 @Transactional
@@ -22,5 +24,12 @@ public class GenreSpringJpaAdapter implements GenrePersistencePort {
         var genreToSave=genreDboMapper.toDbo(request);
         var genreSaved=genreRepository.save(genreToSave);
         return genreDboMapper.toDomain(genreSaved);
+    }
+
+    @Override
+    public Set<Genre> getAll() {
+
+
+        return genreDboMapper.mapToGenres(genreRepository.findAll());
     }
 }

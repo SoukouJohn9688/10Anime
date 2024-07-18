@@ -10,4 +10,5 @@ import java.util.Set;
 public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
 
     Set<GenreEntity> findAllByGenreIdIn(Set<Long> id);
+
 }

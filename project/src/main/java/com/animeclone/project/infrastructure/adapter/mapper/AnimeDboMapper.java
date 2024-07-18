@@ -30,16 +30,6 @@ public interface AnimeDboMapper {
     Anime toDomain(AnimeEntity entity);
 
 
-    default Set<GenreEntity> mapToGenreEntities(Set<Genre> genres) {
-        return genres.stream()
-                .map(genre -> {
-                    GenreEntity genreEntity = new GenreEntity();
-                    genreEntity.setGenreId(genre.getId());
-                    genreEntity.setName(genre.getName()); // Asegúrate de mapear el nombre también
-                    return genreEntity;
-                })
-                .collect(Collectors.toSet());
-    }
 
     default Set<Genre> mapToGenres(Set<GenreEntity> genreEntities) {
         return genreEntities.stream()
