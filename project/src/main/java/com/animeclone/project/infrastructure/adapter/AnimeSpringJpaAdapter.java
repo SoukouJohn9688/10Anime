@@ -50,8 +50,9 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
                 .map(Genre::getId)
                 .collect(Collectors.toSet());
 
-        Set<GenreEntity> genres = new HashSet<>(genreRepository.findAllById(genreIds));
+        Set<GenreEntity> genres = new HashSet<>(genreRepository.findAllByGenreIdIn(genreIds));
 
+        System.out.println(genreIds);
         // Asigna los géneros a la entidad de anime
         animeToSave.setGenres(genres);
 

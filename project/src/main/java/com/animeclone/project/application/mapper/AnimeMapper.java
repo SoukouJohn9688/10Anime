@@ -37,7 +37,7 @@ public interface AnimeMapper {
 
     default Set<Genre> mapToGenres(Set<GenreDTO> genres) {
         return genres.stream()
-                .map(dto -> new Genre(dto.id(),dto.name()))
+                .map(dto -> new Genre(dto.genreId(),dto.name()))
                 .collect(Collectors.toSet());
     }
     default Set<GenreDTO> mapToGenreDTOs(Set<Genre> genres) {
