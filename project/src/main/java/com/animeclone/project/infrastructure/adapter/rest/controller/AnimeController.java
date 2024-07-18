@@ -6,6 +6,7 @@ import com.animeclone.project.application.usecases.AnimeService;
 import com.animeclone.project.domain.model.dto.anime.RequestAnimeDTO;
 import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class AnimeController {
 
 
     @PostMapping("/registry")
-    private ResponseAnimeDTO registerAnime(@RequestBody RequestAnimeDTO request){
+    private ResponseAnimeDTO registerAnime(@Validated @RequestBody RequestAnimeDTO request){
 
         return animeService.registerAnime(request);
     }
