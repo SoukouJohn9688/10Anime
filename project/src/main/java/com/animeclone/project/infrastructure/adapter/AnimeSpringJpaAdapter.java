@@ -31,18 +31,12 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
     private final AnimeDboMapper animeDboMapper;
     private final GenreRepository genreRepository;
 
-
+    // * Fix esta vaina: solo se retornan los generos de anime cuando estos han sido asociados en conjunto dos veces.
+    // * Validar que el id de un genero si exista.
+    // TODO: There is an error when saving anime with the genres Ids for the first time.
     @Override
     public Anime create(Anime request) {
-//        AnimeEntity animeToSave=animeDboMapper.toDbo(request);
 //
-//        Set<GenreEntity> genres = new HashSet<>(genreRepository.findAllById(
-//                animeToSave.getGenres().stream().map(GenreEntity::getGenreId).collect(Collectors.toSet())
-//        ));
-//
-//        animeToSave.setGenres(genres);
-//        AnimeEntity animeSaved=animeRepository.save(animeToSave);
-//        return animeDboMapper.toDomain(animeSaved);
         AnimeEntity animeToSave = animeDboMapper.toDbo(request);
 
         // Mapea los IDs de los géneros a las entidades GenreEntity
@@ -52,7 +46,7 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
 
         Set<GenreEntity> genres = new HashSet<>(genreRepository.findAllByGenreIdIn(genreIds));
 
-        System.out.println(genreIds);
+
         // Asigna los géneros a la entidad de anime
         animeToSave.setGenres(genres);
 
