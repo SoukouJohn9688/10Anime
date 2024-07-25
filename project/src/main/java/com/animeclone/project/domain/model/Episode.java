@@ -1,9 +1,15 @@
 package com.animeclone.project.domain.model;
 
 
+import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
+import com.animeclone.project.infrastructure.adapter.entity.CommentsEntity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Data
 @Getter
@@ -24,4 +30,11 @@ public class Episode {
         HQ1440p
     }
     public QualityEnum qualityEnum;
+
+    private Anime anime;
+
+    private List<Comments> comments;
+
+
+
 }

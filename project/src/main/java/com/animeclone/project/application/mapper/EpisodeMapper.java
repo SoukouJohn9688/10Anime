@@ -16,6 +16,8 @@ public interface EpisodeMapper {
     @Mapping(source = "typeLanguageEnum", target = "typeLanguageEnum")
     @Mapping(source = "qualityEnum", target = "qualityEnum")
     @Mapping(source = "name", target = "name")
+    @Mapping(source = "anime", target = "anime")
+    @Mapping(source = "comments", target = "comments")
     Episode DTOtoDomain(RequestEpisodeDTO request);
 
     @InheritInverseConfiguration
