@@ -1,6 +1,11 @@
 package com.animeclone.project.domain.model.dto.episode;
 
-public record RequestEpisodeDTO(TypeLanguageEnum typeLanguageEnum, String name, QualityEnum qualityEnum) {
+import com.animeclone.project.domain.model.Comments;
+
+import java.util.List;
+
+public record RequestEpisodeDTO(Long episodeId,TypeLanguageEnum typeLanguageEnum, String name, QualityEnum qualityEnum,
+                                List<Comments> comments) {
 
     public enum TypeLanguageEnum {
         JAPANESE,
@@ -12,4 +17,5 @@ public record RequestEpisodeDTO(TypeLanguageEnum typeLanguageEnum, String name, 
         HQ1080p,
         HQ1440p
     }
+
 }

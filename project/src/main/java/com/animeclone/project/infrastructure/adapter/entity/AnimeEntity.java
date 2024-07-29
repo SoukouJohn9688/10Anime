@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -50,7 +51,7 @@ public class AnimeEntity {
     public AnimeTypeEnum animeTypeEnum;
 
     @OneToMany(mappedBy = "animeEntity")
-    private Set<EpisodeEntity> episodes;
+    private List<EpisodeEntity> episodes;
 
 
 
@@ -76,7 +77,7 @@ public class AnimeEntity {
             joinColumns = @JoinColumn(name = "anime_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private Set<StudioEntity> studios;
+    private List<StudioEntity> studios;
 
 
 
