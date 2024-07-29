@@ -8,9 +8,11 @@ public interface EpisodePersistencePort {
 
     List<Episode> findall();
 
+    Episode edit(Long id,Episode request);
+
     Episode findbyid(Long id);
 
-    Episode register(Episode request);
+    Episode register(Long animeId,Episode request);
 
     void deleteById(Long id);
 

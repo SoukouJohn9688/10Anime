@@ -11,12 +11,13 @@ import org.mapstruct.Mapping;
 public interface EpisodeDboMapper {
 
 
-    @Mapping(source = "id", target = "episodeId")
+    @Mapping(source = "episodeId", target = "episodeId")
     //@Mapping(source = "content", target = "content")
     @Mapping(source = "qualityEnum", target = "qualityEnum")
     @Mapping(source = "typeLanguageEnum", target = "typeLanguageEnum")
     @Mapping(source = "name", target = "name")
-
+    @Mapping(source = "anime", target = "animeEntity")
+    @Mapping(source = "comments", target = "commentsEntity")
     EpisodeEntity toDbo(Episode domain);
 
     @InheritInverseConfiguration

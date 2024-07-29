@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Episode {
-    private Integer id;
+    private Long episodeId;
     private String name;
 
     public enum TypeLanguageEnum {

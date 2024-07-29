@@ -21,10 +21,12 @@ public class EpisodeServiceImpl implements EpisodeService {
 
 
     @Override
-    public ResponseEpisodeDTO register(RequestEpisodeDTO requestEpisodeDTO) {
+    public ResponseEpisodeDTO register(Long animeId,RequestEpisodeDTO requestEpisodeDTO) {
         Episode episode = episodeMapper.DTOtoDomain(requestEpisodeDTO);
-        Episode episodeToPersist = episodePersistencePort.register(episode);
+        Episode episodeToPersist = episodePersistencePort.register(animeId,episode);
+        System.out.println(animeId+"de serviceimpl");
         return episodeMapper.DomainToResponse(episodeToPersist);
+
     }
 
     @Override
@@ -33,7 +35,7 @@ public class EpisodeServiceImpl implements EpisodeService {
     }
 
     @Override
-    public ResponseEpisodeDTO edit(RequestEpisodeDTO requestEpisodeDTO) {
+    public ResponseEpisodeDTO edit(Long id,RequestEpisodeDTO requestEpisodeDTO) {
         return null;
     }
 

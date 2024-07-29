@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface EpisodeService {
 
-    ResponseEpisodeDTO register(RequestEpisodeDTO requestEpisodeDTO);
+    ResponseEpisodeDTO register(Long animeId,RequestEpisodeDTO requestEpisodeDTO);
 
     List<ResponseEpisodeDTO> findall();
 
-    ResponseEpisodeDTO edit(RequestEpisodeDTO requestEpisodeDTO);
+    ResponseEpisodeDTO edit(Long id,RequestEpisodeDTO requestEpisodeDTO);
 
     void delete(RequestEpisodeDTO requestEpisodeDTO);
 
