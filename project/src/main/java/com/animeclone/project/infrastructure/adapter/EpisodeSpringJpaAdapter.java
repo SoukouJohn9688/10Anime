@@ -41,11 +41,11 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
 
     @Override
     public Episode register(Long animeId,Episode request) {
-        Optional<EpisodeEntity> existsdb = episodeRepository.findById(request.getEpisodeId());
-        if(existsdb.isPresent()){
-            System.out.println("Este episodio ya existe");
-            return episodeDboMapper.toDomain(existsdb.get());
-        }else{
+       //Optional<EpisodeEntity> existsdb = episodeRepository.findById(request.getEpisodeId());
+//        if(existsdb.isPresent()){
+//            System.out.println("Este episodio ya existe");
+//            return episodeDboMapper.toDomain(existsdb.get());
+//        }
 
 
         Optional<AnimeEntity> animedb = animeRepository.findById(animeId);
@@ -65,7 +65,7 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
         //return episodeDboMapper.toDomain(episodeRepository.save(episode));
 
 
-        }
+
 
     }
 
