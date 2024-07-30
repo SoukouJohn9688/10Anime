@@ -5,7 +5,8 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
+
 
 
 public record RequestAnimeDTO(
@@ -44,6 +45,6 @@ public record RequestAnimeDTO(
 
         @NotNull
         @Size(min = 1)
-        Set<@Valid GenreDTO> genres
+        List<@Valid GenreDTO> genres
 ) {
 }

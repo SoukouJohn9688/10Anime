@@ -19,7 +19,6 @@ public class EpisodeController {
 
     @PostMapping("/registry/{animeId}")
     private ResponseEpisodeDTO registerAnime(@PathVariable Long animeId,@RequestBody RequestEpisodeDTO request){
-        System.out.println(animeId);
         return episodeService.register(animeId,request);
     }
     @GetMapping("/find")

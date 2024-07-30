@@ -31,10 +31,10 @@ public interface AnimeDboMapper {
 
 
 
-    default Set<Genre> mapToGenres(Set<GenreEntity> genreEntities) {
+    default List<Genre> mapToGenres(List<GenreEntity> genreEntities) {
         return genreEntities.stream()
                 .map(genreEntity -> new Genre(genreEntity.getGenreId(), genreEntity.getName()))
-                .collect(Collectors.toSet());
+                .toList();
     }
 
     default List<Anime> toAnimeDomainList(List<AnimeEntity> animeListDB) {
