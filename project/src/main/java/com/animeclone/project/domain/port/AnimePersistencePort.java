@@ -21,5 +21,5 @@ public interface AnimePersistencePort {
 
     Anime addGenreToAnime(Anime request);
 
-    public Stream<GenreEntity> streamByIds(Set<Long> ids);
+    public Stream<GenreEntity> streamByIds(List<Long> ids);
 }

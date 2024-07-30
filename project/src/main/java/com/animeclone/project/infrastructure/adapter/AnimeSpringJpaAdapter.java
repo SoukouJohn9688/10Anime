@@ -32,15 +32,19 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
     public Anime create(Anime request) {
         AnimeEntity animeToSave = animeDboMapper.toDbo(request);
 
-        Set<Long> genreIds = animeToSave.getGenres().stream()
+        List<Long> genreIds = animeToSave.getGenres().stream()
                 .map(GenreEntity::getGenreId)
-                .collect(Collectors.toSet());
+                .toList();
 
-        Set<GenreEntity> genres = genreRepository.findAllByGenreIds(genreIds);
+        List<GenreEntity> genres = genreRepository.findAllByGenreIds(genreIds);
+//        animeToSave.setGenres(genres);
         animeToSave.setGenres(genres);
+//        for (GenreEntity genre : genres) {
+//            genre.getAnimes().add(animeToSave);
+//        }
+
 
         AnimeEntity animeSaved = animeRepository.save(animeToSave);
-
         return animeDboMapper.toDomain(animeSaved);
     }
 
@@ -76,7 +80,7 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
     }
 
     @Override
-    public Stream<GenreEntity> streamByIds(Set<Long> genreIds) {
+    public Stream<GenreEntity> streamByIds(List<Long> genreIds) {
         return genreRepository.findAllByGenreIds(genreIds).stream();
     }
 }

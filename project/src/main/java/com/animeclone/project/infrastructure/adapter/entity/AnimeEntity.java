@@ -2,10 +2,7 @@ package com.animeclone.project.infrastructure.adapter.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDateTime;
@@ -14,7 +11,9 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "anime_tbl")
@@ -50,16 +49,9 @@ public class AnimeEntity {
     }
     public AnimeTypeEnum animeTypeEnum;
 
-    @OneToMany(mappedBy = "animeEntity")
+    @OneToMany(mappedBy = "animeEntity",cascade = CascadeType.ALL)
+
     private List<EpisodeEntity> episodes;
-
-
-
-//    @OneToOne
-//    private ScoreEntity score;
-
-//    @ManyToOne
-//    private TypeAnimeEntity typeAnime;
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -68,7 +60,7 @@ public class AnimeEntity {
             joinColumns = @JoinColumn(name = "anime_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private Set<GenreEntity> genres;
+    private List<GenreEntity> genres;
 
 
     @ManyToMany

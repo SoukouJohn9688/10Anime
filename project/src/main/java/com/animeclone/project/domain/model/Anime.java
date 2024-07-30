@@ -2,6 +2,7 @@ package com.animeclone.project.domain.model;
 
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
+import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -26,7 +27,8 @@ public class Anime {
     private String description;
     private String name;
     private Double score;
-    private Set<Genre> genres;
+    private List<Genre> genres;
+    private List<Episode> episodes;
 
     public enum StatusEnum{
         ONGOING,

@@ -12,7 +12,6 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
@@ -35,15 +34,15 @@ public interface AnimeMapper {
     @InheritInverseConfiguration
     ResponseAnimeDTO DomainToResponse(Anime anime);
 
-    default Set<Genre> mapToGenres(Set<GenreDTO> genres) {
+    default List<Genre> mapToGenres(List<GenreDTO> genres) {
         return genres.stream()
                 .map(dto -> new Genre(dto.genreId(),dto.name()))
-                .collect(Collectors.toSet());
+                .toList();
     }
-    default Set<GenreDTO> mapToGenreDTOs(Set<Genre> genres) {
+    default List<GenreDTO> mapToGenreDTOs(List<Genre> genres) {
         return genres.stream()
                 .map(genre -> new GenreDTO(genre.getGenreId(), genre.getName()))
-                .collect(Collectors.toSet());
+                .toList();
     }
 
 

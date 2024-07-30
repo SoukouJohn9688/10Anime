@@ -1,6 +1,7 @@
 package com.animeclone.project.infrastructure.adapter;
 
 
+import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.model.Episode;
 import com.animeclone.project.domain.port.EpisodePersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
@@ -41,31 +42,20 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
 
     @Override
     public Episode register(Long animeId,Episode request) {
-       //Optional<EpisodeEntity> existsdb = episodeRepository.findById(request.getEpisodeId());
-//        if(existsdb.isPresent()){
-//            System.out.println("Este episodio ya existe");
-//            return episodeDboMapper.toDomain(existsdb.get());
-//        }
-
 
         Optional<AnimeEntity> animedb = animeRepository.findById(animeId);
             if (animedb.isEmpty()) {
                 throw new IllegalArgumentException("Anime no encontrado");
             }
             EpisodeEntity episode = episodeDboMapper.toDbo(request);
-            episode.setAnimeEntity(animedb.get());
-
-            return episodeDboMapper.toDomain(episodeRepository.save(episode));
-
-
-//        Long id = episode.getAnimeEntity().getAnimeId();
-//        Optional<AnimeEntity>animedb = animeRepository.findById(id);
-//
-//         episode.setAnimeEntity(animedb.get());
-        //return episodeDboMapper.toDomain(episodeRepository.save(episode));
-
-
-
+//            episode.setAnimeEntity(animedb.get());
+            animedb.get().getEpisodes().add(episode);
+           AnimeEntity response= animeRepository.save(animedb.get());
+       // episodeDboMapper.toDomain(episode);
+        for (EpisodeEntity ep:response.getEpisodes()){
+            System.out.println(ep);
+        }
+            return null;
 
     }
 
