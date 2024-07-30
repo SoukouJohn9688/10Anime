@@ -26,7 +26,7 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
 
     @Override
     public List<Episode> findall() {
-        return List.of();
+        return episodeDboMapper.toEpisodeDomainList(episodeRepository.findAll());
     }
 
     @Override

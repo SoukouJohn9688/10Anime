@@ -31,7 +31,9 @@ public class EpisodeServiceImpl implements EpisodeService {
 
     @Override
     public List<ResponseEpisodeDTO> findall() {
-        return List.of();
+        var responseList=episodeMapper.toEpisodeResponseList(episodePersistencePort.findall());
+        return responseList;
+
     }
 
     @Override
