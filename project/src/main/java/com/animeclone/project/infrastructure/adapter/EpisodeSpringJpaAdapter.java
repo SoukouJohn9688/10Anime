@@ -55,7 +55,7 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
         for (EpisodeEntity ep:response.getEpisodes()){
             System.out.println(ep);
         }
-            return request;
+            return episodeDboMapper.toDomain(episode);
 
     }
 
