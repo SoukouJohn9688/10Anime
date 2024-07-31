@@ -4,6 +4,7 @@ package com.animeclone.project.infrastructure.adapter.rest.controller;
 import com.animeclone.project.application.usecases.EpisodeService;
 import com.animeclone.project.domain.model.dto.episode.RequestEpisodeDTO;
 import com.animeclone.project.domain.model.dto.episode.ResponseEpisodeDTO;
+import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class EpisodeController {
         return episodeService.findall();
     }
 
-
-
+    @PostMapping("{id}")
+    private ResponseEpisodeDTO edit(@PathVariable Long id, @RequestBody RequestEpisodeDTO request) throws EpisodeNotFoundException {
+        return episodeService.edit(id,request);
+    }
 }
