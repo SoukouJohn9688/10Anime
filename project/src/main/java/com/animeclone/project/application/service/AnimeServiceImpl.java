@@ -9,7 +9,7 @@ import com.animeclone.project.domain.model.dto.episode.RequestEpisodeDTO;
 import com.animeclone.project.domain.model.dto.episode.ResponseEpisodeDTO;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.port.AnimePersistencePort;
-import com.animeclone.project.infrastructure.adapter.repository.AnimeRepository;
+import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class AnimeServiceImpl implements AnimeService {
     }
 
     @Override
-    public RequestAnimeDTO getById(Long id) {
+    public ResponseAnimeDTO getById(Long id) {
         return null;
     }
 
@@ -44,12 +44,14 @@ public class AnimeServiceImpl implements AnimeService {
     }
 
     @Override
-    public RequestAnimeDTO updateAnimeById(Long id, RequestAnimeDTO request) {
-        return null;
+    public ResponseAnimeDTO updateAnimeById(Long id, RequestAnimeDTO request) throws AnimeNotFoundException {
+        Anime convertReqDomain=animeMapper.DTOtoDomain(request);
+        Anime updatedAnime=animePersistencePort.update(id,convertReqDomain);
+        return animeMapper.DomainToResponse(updatedAnime);
     }
 
     @Override
-    public RequestAnimeDTO deleteAnime(Long Id) {
+    public ResponseAnimeDTO deleteAnime(Long Id) {
         return null;
     }
 
@@ -61,5 +63,12 @@ public class AnimeServiceImpl implements AnimeService {
     @Override
     public ResponseEpisodeDTO addGenreToAnime(Long animeId, RequestGenreDTO requestGenreDTO) {
         return null;
+    }
+
+    @Override
+    public ResponseAnimeDTO findByName(String name) {
+       Anime updatedAnime=animePersistencePort.FindByName(name);
+        return animeMapper.DomainToResponse(updatedAnime);
+
     }
 }

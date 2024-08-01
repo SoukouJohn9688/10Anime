@@ -42,4 +42,10 @@ public class GenreServiceImpl implements GenreService {
 
     }
 
+    @Override
+    public void deleteById(Long id) {
+         genrePersistencePort.deleteById(id);
+
+    }
+
 }

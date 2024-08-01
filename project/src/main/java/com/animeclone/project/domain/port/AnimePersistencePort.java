@@ -2,6 +2,7 @@ package com.animeclone.project.domain.port;
 
 import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
+import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 
 import java.util.List;
 import java.util.Set;
@@ -17,9 +18,11 @@ public interface AnimePersistencePort {
 
     void deleteById(Long id);
 
-    Anime update(Anime request);
+    Anime update(Long animeId, Anime request) throws AnimeNotFoundException;
 
     Anime addGenreToAnime(Anime request);
 
     public Stream<GenreEntity> streamByIds(List<Long> ids);
+
+    Anime FindByName(String name);
 }

@@ -11,5 +11,6 @@ public interface GenrePersistencePort {
     Genre create(Genre request);
     Set<Genre> getAll();
     Genre edit(Long id, Genre request) throws GenreNotFoundException;
+    void deleteById(Long id);
 
 }

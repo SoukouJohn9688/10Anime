@@ -6,7 +6,6 @@ import com.animeclone.project.domain.model.Episode;
 import com.animeclone.project.domain.model.dto.episode.RequestEpisodeDTO;
 import com.animeclone.project.domain.model.dto.episode.ResponseEpisodeDTO;
 import com.animeclone.project.domain.port.EpisodePersistencePort;
-import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

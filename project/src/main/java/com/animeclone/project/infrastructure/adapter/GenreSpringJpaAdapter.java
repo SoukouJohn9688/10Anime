@@ -56,4 +56,11 @@ public class GenreSpringJpaAdapter implements GenrePersistencePort {
         }
         return request;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        genreRepository.deleteById(id);
+    }
+
+
 }

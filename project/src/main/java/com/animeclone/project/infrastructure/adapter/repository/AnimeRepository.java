@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AnimeRepository extends JpaRepository<AnimeEntity, Long> {
 
+    AnimeEntity findByName(String name);
+
 }
 
 
