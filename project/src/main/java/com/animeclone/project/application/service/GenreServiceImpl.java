@@ -6,6 +6,7 @@ import com.animeclone.project.domain.model.Genre;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.model.dto.genre.ResponseGenreDTO;
 import com.animeclone.project.domain.port.GenrePersistencePort;
+import com.animeclone.project.infrastructure.adapter.exception.genre.GenreNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,14 @@ public class GenreServiceImpl implements GenreService {
 
 
         return genreMapper.toGenresResponseList(genrePersistencePort.getAll());
+    }
+
+    @Override
+    public ResponseGenreDTO edit(Long id, RequestGenreDTO request) throws GenreNotFoundException {
+        Genre genre = genreMapper.DTOtoDomain(request);
+        Genre genreToPersist = genrePersistencePort.edit(id, genre);
+        return genreMapper.DomainToResponse(genreToPersist);
+
     }
 
 }

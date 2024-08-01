@@ -3,6 +3,7 @@ package com.animeclone.project.infrastructure.adapter;
 import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.port.AnimePersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
+import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import com.animeclone.project.infrastructure.adapter.exception.AnimeException;
 import com.animeclone.project.infrastructure.adapter.mapper.AnimeDboMapper;
@@ -37,8 +38,10 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
                 .toList();
 
         List<GenreEntity> genres = genreRepository.findAllByGenreIds(genreIds);
+
 //        animeToSave.setGenres(genres);
         animeToSave.setGenres(genres);
+
 //        for (GenreEntity genre : genres) {
 //            genre.getAnimes().add(animeToSave);
 //        }
