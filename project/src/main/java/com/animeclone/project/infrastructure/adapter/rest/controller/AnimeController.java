@@ -6,6 +6,7 @@ import com.animeclone.project.application.usecases.AnimeService;
 import com.animeclone.project.domain.model.dto.anime.RequestAnimeDTO;
 import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
+import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,12 +31,22 @@ public class AnimeController {
 
         return animeService.registerAnime(request);
     }
+//    @PostMapping("/edit/{animeId}")
+//    @ResponseStatus(HttpStatus.OK)
+//    private ResponseEntity<Response> editAnime(@PathVariable long animeId
+//            , @Validated @RequestBody RequestAnimeDTO requestAnimeDTO) throws AnimeNotFoundException {
+//        ResponseAnimeDTO updatedAnime=animeService.updateAnimeById(animeId,requestAnimeDTO);
+//        Response response=new Response(true,HttpStatus.OK, updatedAnime);
+//        return ResponseEntity.ok(response);
+//
+//    }
     @PostMapping("/edit/{animeId}")
-    private ResponseEntity<Response> editeAnime(@PathVariable long animeId
+    @ResponseStatus(HttpStatus.OK)
+    private ResponseAnimeDTO editAnime(@PathVariable long animeId
             , @Validated @RequestBody RequestAnimeDTO requestAnimeDTO) throws AnimeNotFoundException {
+
         ResponseAnimeDTO updatedAnime=animeService.updateAnimeById(animeId,requestAnimeDTO);
-        Response response=new Response(true,HttpStatus.OK, updatedAnime);
-        return ResponseEntity.ok(response);
+        return updatedAnime;
 
     }
     @GetMapping("/find")

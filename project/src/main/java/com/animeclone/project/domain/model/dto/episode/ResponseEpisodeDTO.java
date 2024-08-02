@@ -5,7 +5,7 @@ import com.animeclone.project.domain.model.Comments;
 
 import java.util.List;
 
-public record ResponseEpisodeDTO(TypeLanguageEnum typeLanguageEnum, String name, QualityEnum qualityEnum, Anime anime,
+public record ResponseEpisodeDTO(TypeLanguageEnum typeLanguageEnum, String name, QualityEnum qualityEnum,
                                  List<Comments> comments) {
 
     public enum TypeLanguageEnum {

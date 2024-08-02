@@ -72,8 +72,9 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         // Implementation for updating anime
         Optional<AnimeEntity> animedb = animeRepository.findById(animeId);
         if (animedb.isEmpty()) {
-            throw new AnimeNotFoundException("Anime not found in the database.");
+           throw new AnimeNotFoundException("Anime not found in the database.");
         }
+
 
         AnimeEntity animeToUpdate=animeDboMapper.toDbo(request);
         animedb.get().setAnimeId(animeId);
