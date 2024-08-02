@@ -5,7 +5,6 @@ import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public interface AnimePersistencePort {
