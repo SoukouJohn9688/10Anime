@@ -28,7 +28,7 @@ public class EpisodeController {
     }
     @GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
-    private List<ResponseEpisodeDTO> getAllAnimes(){
+    private List<ResponseEpisodeDTO> getAllEpisodes(){
         return episodeService.findall();
     }
 

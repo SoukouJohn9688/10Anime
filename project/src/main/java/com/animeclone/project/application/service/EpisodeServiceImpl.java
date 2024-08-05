@@ -7,10 +7,12 @@ import com.animeclone.project.domain.model.dto.episode.RequestEpisodeDTO;
 import com.animeclone.project.domain.model.dto.episode.ResponseEpisodeDTO;
 import com.animeclone.project.domain.port.EpisodePersistencePort;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
+import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -45,9 +47,12 @@ public class EpisodeServiceImpl implements EpisodeService {
 
 
     @Override
-    public ResponseEpisodeDTO edit(Long id,RequestEpisodeDTO requestEpisodeDTO) {
-        return null;
-    }
+    public ResponseEpisodeDTO edit(Long id,RequestEpisodeDTO requestEpisodeDTO) throws EpisodeNotFoundException {
+        Episode episode = episodeMapper.DTOtoDomain(requestEpisodeDTO);
+        Episode episodeToPersist = episodePersistencePort.edit(id,episode);
+        return episodeMapper.DomainToResponse(episodeToPersist);
+
+     }
 
     @Override
     public void delete(RequestEpisodeDTO requestEpisodeDTO) {

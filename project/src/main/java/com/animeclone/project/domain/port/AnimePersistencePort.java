@@ -5,7 +5,6 @@ import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public interface AnimePersistencePort {
@@ -23,4 +22,9 @@ public interface AnimePersistencePort {
     Anime addGenreToAnime(Anime request);
 
     public Stream<GenreEntity> streamByIds(List<Long> ids);
+
+    List<Anime> FindByName(String name);
+    List<Anime> FindByGenreName(String genreName);
+    List<Anime> FindByType(String type);
+    Anime getRandomAnime();
 }

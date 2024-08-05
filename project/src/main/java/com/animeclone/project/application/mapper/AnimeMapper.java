@@ -26,6 +26,8 @@ public interface AnimeMapper {
     //@Mapping(source = "quality", target = "quality")
     @Mapping(source = "score", target = "score")
     @Mapping(source = "name", target = "name")
+    @Mapping(source = "animeTypeEnum",target = "animeTypeEnum")
+    @Mapping(source = "statusEnum",target = "statusEnum")
     @Mapping(source = "genres", target = "genres")
     Anime DTOtoDomain(RequestAnimeDTO request);
 

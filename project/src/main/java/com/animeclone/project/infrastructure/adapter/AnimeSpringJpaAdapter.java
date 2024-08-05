@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Stream;
 
 
@@ -37,8 +38,10 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
                 .toList();
 
         List<GenreEntity> genres = genreRepository.findAllByGenreIds(genreIds);
+
 //        animeToSave.setGenres(genres);
         animeToSave.setGenres(genres);
+
 //        for (GenreEntity genre : genres) {
 //            genre.getAnimes().add(animeToSave);
 //        }
@@ -104,5 +107,33 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
     @Override
     public Stream<GenreEntity> streamByIds(List<Long> genreIds) {
         return genreRepository.findAllByGenreIds(genreIds).stream();
+    }
+
+    @Override
+    public List<Anime> FindByName(String name) {
+        List<AnimeEntity> nameAnime = animeRepository.findByNameContainingIgnoreCase(name);
+        return animeDboMapper.toAnimeDomainList(nameAnime);
+    }
+
+    @Override
+    public List<Anime> FindByGenreName(String genreName) {
+        List<AnimeEntity> genreNameAnime=animeRepository.findByGenreNameContainingIgnoreCase(genreName);
+        return animeDboMapper.toAnimeDomainList(genreNameAnime);
+    }
+
+    @Override
+    public List<Anime> FindByType(String type) {
+        //List<AnimeEntity>
+        return animeDboMapper.toAnimeDomainList(animeRepository.findAll()
+                .stream()
+                .filter(ani->ani.getAnimeTypeEnum().name().equals(type)).toList());
+    }
+
+    @Override
+    public Anime getRandomAnime() {
+        List<AnimeEntity> listDB=animeRepository.findAll();
+        Random random = new Random();
+        Long randomInt = random.nextLong(listDB.size());
+        return animeDboMapper.toDomain(animeRepository.findById(randomInt).get());
     }
 }

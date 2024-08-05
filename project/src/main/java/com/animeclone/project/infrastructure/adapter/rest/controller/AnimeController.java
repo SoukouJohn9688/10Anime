@@ -8,6 +8,7 @@ import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.utils.Response;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,19 +28,11 @@ public class AnimeController {
 
 
     @PostMapping("/registry")
-    private ResponseAnimeDTO registerAnime(@Validated @RequestBody RequestAnimeDTO request){
-
+    @ResponseStatus(HttpStatus.OK)
+    private ResponseAnimeDTO registerAnime(@Valid @RequestBody RequestAnimeDTO request){
         return animeService.registerAnime(request);
     }
-//    @PostMapping("/edit/{animeId}")
-//    @ResponseStatus(HttpStatus.OK)
-//    private ResponseEntity<Response> editAnime(@PathVariable long animeId
-//            , @Validated @RequestBody RequestAnimeDTO requestAnimeDTO) throws AnimeNotFoundException {
-//        ResponseAnimeDTO updatedAnime=animeService.updateAnimeById(animeId,requestAnimeDTO);
-//        Response response=new Response(true,HttpStatus.OK, updatedAnime);
-//        return ResponseEntity.ok(response);
-//
-//    }
+
     @PostMapping("/edit/{animeId}")
     @ResponseStatus(HttpStatus.OK)
     private ResponseAnimeDTO editAnime(@PathVariable long animeId
@@ -50,8 +43,38 @@ public class AnimeController {
 
     }
     @GetMapping("/find")
+    @ResponseStatus(HttpStatus.OK)
     private List<ResponseAnimeDTO> getAllAnimes(){
         return animeService.getAll();
     }
+
+
+    @GetMapping("/find/{animeName}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByName(@PathVariable String animeName){
+        return animeService.findByName(animeName);
+    }
+
+    @GetMapping("/find/bygenre/{animeGenre}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByGenreName(@PathVariable String animeGenre){
+        return animeService.findByGenreName(animeGenre);
+    }
+
+    @GetMapping("/find/bytype/{animeType}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByType(@PathVariable String animeType){
+        return animeService.findByType(animeType);
+    }
+
+
+  @GetMapping("/find/random")
+  @ResponseStatus(HttpStatus.OK)
+    private ResponseAnimeDTO getRandomAnime(){
+        return animeService.getRandomAnime();
+    }
+
+
+
 
 }
