@@ -67,10 +67,10 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
                 throw new IllegalArgumentException("Anime no encontrado");
             }
             EpisodeEntity episode = episodeDboMapper.toDbo(request);
-//            episode.setAnimeEntity(animedb.get());
+
             animedb.get().getEpisodes().add(episode);
            AnimeEntity response= animeRepository.save(animedb.get());
-       // episodeDboMapper.toDomain(episode);
+
         for (EpisodeEntity ep:response.getEpisodes()){
             System.out.println(ep);
         }
