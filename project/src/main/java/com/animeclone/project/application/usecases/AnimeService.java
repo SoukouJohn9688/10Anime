@@ -20,5 +20,10 @@ public interface AnimeService {
     ResponseAnimeDTO deleteAnime(Long Id);
     ResponseEpisodeDTO addEpisodeToAnime(Long animeId, RequestEpisodeDTO requestEpisodeDTO);
     ResponseEpisodeDTO addGenreToAnime(Long animeId, RequestGenreDTO requestGenreDTO);
-    ResponseAnimeDTO findByName(String name);
+    List<ResponseAnimeDTO> findByName(String name);
+    List<ResponseAnimeDTO> findByGenreName(String genreName);
+    List<ResponseAnimeDTO> findByType(String type);
+    ResponseAnimeDTO getRandomAnime();
+
+
 }

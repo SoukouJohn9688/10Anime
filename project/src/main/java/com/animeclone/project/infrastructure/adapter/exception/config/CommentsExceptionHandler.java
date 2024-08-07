@@ -1,7 +1,5 @@
 package com.animeclone.project.infrastructure.adapter.exception.config;
 
-import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeAlreadyExistException;
-import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.exception.comments.CommentsNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

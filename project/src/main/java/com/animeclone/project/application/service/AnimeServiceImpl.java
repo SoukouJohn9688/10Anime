@@ -66,9 +66,27 @@ public class AnimeServiceImpl implements AnimeService {
     }
 
     @Override
-    public ResponseAnimeDTO findByName(String name) {
-       Anime updatedAnime=animePersistencePort.FindByName(name);
-        return animeMapper.DomainToResponse(updatedAnime);
+    public List<ResponseAnimeDTO> findByName(String name) {
+       List<Anime> updatedAnime=animePersistencePort.FindByName(name);
+        return animeMapper.toAnimeResponseList(updatedAnime);
 
     }
+
+    @Override
+    public List<ResponseAnimeDTO> findByGenreName(String genreName) {
+        List<Anime> list=animePersistencePort.FindByGenreName(genreName);
+        return animeMapper.toAnimeResponseList(list) ;
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> findByType(String type) {
+        return animeMapper.toAnimeResponseList(animePersistencePort.FindByType(type));
+    }
+
+    @Override
+    public ResponseAnimeDTO getRandomAnime() {
+        return animeMapper.DomainToResponse(animePersistencePort.getRandomAnime());
+    }
+
+
 }

@@ -23,5 +23,8 @@ public interface AnimePersistencePort {
 
     public Stream<GenreEntity> streamByIds(List<Long> ids);
 
-    Anime FindByName(String name);
+    List<Anime> FindByName(String name);
+    List<Anime> FindByGenreName(String genreName);
+    List<Anime> FindByType(String type);
+    Anime getRandomAnime();
 }

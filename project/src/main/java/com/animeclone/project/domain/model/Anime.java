@@ -1,8 +1,12 @@
 package com.animeclone.project.domain.model;
 
+import com.animeclone.project.domain.enumerations.AnimeTypeEnum;
+import com.animeclone.project.domain.enumerations.StatusEnum;
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -30,23 +34,15 @@ public class Anime {
     private List<Genre> genres;
     private List<Episode> episodes;
 
-    public enum StatusEnum{
-        ONGOING,
-        COMPLETED,
-        HALTED,
-        CANCELLED
-    }
+    @Enumerated(EnumType.STRING)
+    private StatusEnum statusEnum;
 
-    public StatusEnum statusEnum;
+    @Enumerated(EnumType.STRING)
+    private AnimeTypeEnum animeTypeEnum;
 
 
-    public enum AnimeTypeEnum{
-        OVA,
-        ONA,
-        MOVIE,
-        TVSERIES,
 
-    }
-    public AnimeTypeEnum animeTypeEnum;
+
+
 
 }

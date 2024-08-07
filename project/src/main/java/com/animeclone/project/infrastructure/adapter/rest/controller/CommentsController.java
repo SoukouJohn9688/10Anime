@@ -17,11 +17,11 @@ public class CommentsController {
     private final CommentsService commentsService;
 
 
-    @PostMapping("/registry")
-    private ResponseCommentsDTO registerComment(@RequestBody RequestCommentsDTO request){
-
-        return commentsService.registerComments(request);
-    }
+//    @PostMapping("/registry")
+//    private ResponseCommentsDTO registerComment(@RequestBody RequestCommentsDTO request){
+//
+//        return commentsService.registerComments(request);
+//    }
 
     @PostMapping("{id}")
     private ResponseCommentsDTO editComment(@PathVariable Long id, @RequestBody RequestCommentsDTO request) throws CommentsNotFoundException {

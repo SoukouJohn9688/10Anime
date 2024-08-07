@@ -3,7 +3,6 @@ package com.animeclone.project.infrastructure.adapter;
 import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.port.AnimePersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
-import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import com.animeclone.project.infrastructure.adapter.exception.AnimeException;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Stream;
 
 
@@ -75,8 +75,9 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         // Implementation for updating anime
         Optional<AnimeEntity> animedb = animeRepository.findById(animeId);
         if (animedb.isEmpty()) {
-            throw new AnimeNotFoundException("Anime not found in the database.");
+           throw new AnimeNotFoundException("Anime not found in the database.");
         }
+
 
         AnimeEntity animeToUpdate=animeDboMapper.toDbo(request);
         animedb.get().setAnimeId(animeId);
@@ -109,8 +110,30 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
     }
 
     @Override
-    public Anime FindByName(String name) {
-        AnimeEntity nameanime = animeRepository.findByName(name);
-        return animeDboMapper.toDomain(nameanime);
+    public List<Anime> FindByName(String name) {
+        List<AnimeEntity> nameAnime = animeRepository.findByNameContainingIgnoreCase(name);
+        return animeDboMapper.toAnimeDomainList(nameAnime);
+    }
+
+    @Override
+    public List<Anime> FindByGenreName(String genreName) {
+        List<AnimeEntity> genreNameAnime=animeRepository.findByGenreNameContainingIgnoreCase(genreName);
+        return animeDboMapper.toAnimeDomainList(genreNameAnime);
+    }
+
+    @Override
+    public List<Anime> FindByType(String type) {
+        //List<AnimeEntity>
+        return animeDboMapper.toAnimeDomainList(animeRepository.findAll()
+                .stream()
+                .filter(ani->ani.getAnimeTypeEnum().name().equals(type)).toList());
+    }
+
+    @Override
+    public Anime getRandomAnime() {
+        List<AnimeEntity> listDB=animeRepository.findAll();
+        Random random = new Random();
+        Long randomInt = random.nextLong(listDB.size());
+        return animeDboMapper.toDomain(animeRepository.findById(randomInt).get());
     }
 }

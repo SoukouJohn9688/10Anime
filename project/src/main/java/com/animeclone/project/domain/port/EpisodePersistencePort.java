@@ -1,6 +1,7 @@
 package com.animeclone.project.domain.port;
 
 import com.animeclone.project.domain.model.Episode;
+import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface EpisodePersistencePort {
 
     Episode findById(Long id);
 
-    Episode register(Long animeId,Episode request);
+    String register(Long animeId, Episode request) throws AnimeNotFoundException;
 
     void deleteById(Long id);
 

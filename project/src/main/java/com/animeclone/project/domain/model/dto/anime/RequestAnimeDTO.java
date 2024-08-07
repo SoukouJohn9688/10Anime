@@ -1,6 +1,10 @@
 package com.animeclone.project.domain.model.dto.anime;
 import com.animeclone.project.domain.model.Genre;
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
+import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
+import com.animeclone.project.infrastructure.adapter.rest.advice.ValidEnum;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
@@ -45,6 +49,15 @@ public record RequestAnimeDTO(
 
         @NotNull
         @Size(min = 1)
-        List<@Valid GenreDTO> genres
+        List<@Valid GenreDTO> genres,
+
+        @Enumerated(EnumType.STRING)
+        String animeTypeEnum,
+
+        @Enumerated(EnumType.STRING)
+        String statusEnum
+
+
+
 ) {
 }
