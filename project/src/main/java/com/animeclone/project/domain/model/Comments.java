@@ -12,4 +12,6 @@ public class Comments {
 
     private long id;
     private String content;
+
+    private Episode episode;
 }

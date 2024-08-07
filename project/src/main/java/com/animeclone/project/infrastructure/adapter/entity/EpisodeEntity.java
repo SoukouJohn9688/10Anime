@@ -41,7 +41,7 @@ public class EpisodeEntity {
     private AnimeEntity animeEntity;
 
 
-    @OneToMany(mappedBy = "episodeEntity")
+    @OneToMany(mappedBy = "episodeEntity", cascade = CascadeType.ALL)
     private List<CommentsEntity> commentsEntity;
 
 
