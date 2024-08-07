@@ -1,6 +1,8 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
 
+import com.animeclone.project.domain.enumerations.AnimeTypeEnum;
+import com.animeclone.project.domain.enumerations.StatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -31,23 +33,25 @@ public class AnimeEntity {
     private Double score;
     private String name;
 
-    public enum StatusEnum{
-        ONGOING,
-        COMPLETED,
-        HALTED,
-        CANCELLED
-    }
+//    public enum StatusEnum{
+//        ONGOING,
+//        COMPLETED,
+//        HALTED,
+//        CANCELLED
+//    }
 
-    public StatusEnum statusEnum;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum statusEnum;
 
-    public enum AnimeTypeEnum{
-        OVA,
-        ONA,
-        MOVIE,
-        TVSERIES,
-
-    }
-    public AnimeTypeEnum animeTypeEnum;
+//    public enum AnimeTypeEnum{
+//        OVA,
+//        ONA,
+//        MOVIE,
+//        TVSERIES,
+//
+//    }
+    @Enumerated(EnumType.STRING)
+    private AnimeTypeEnum animeTypeEnum;
 
     @OneToMany(mappedBy = "animeEntity",cascade = CascadeType.ALL)
 

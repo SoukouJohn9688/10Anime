@@ -68,7 +68,7 @@ class AnimeServiceImplTest {
                 .map((genero)->toGenreEntity(genero)).toList();
 
         AnimeEntity animeToSave = AnimeEntity.builder()
-                .animeTypeEnum(AnimeEntity.AnimeTypeEnum.MOVIE)
+                .animeTypeEnum(AnimeEntity.)
                 .name(request.getName())
                 .duration(request.getDuration())
                 .score(request.getScore())
