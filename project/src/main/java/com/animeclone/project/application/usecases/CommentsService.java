@@ -1,0 +1,13 @@
+package com.animeclone.project.application.usecases;
+
+import com.animeclone.project.domain.model.dto.Comments.RequestCommentsDTO;
+import com.animeclone.project.domain.model.dto.Comments.ResponseCommentsDTO;
+import com.animeclone.project.infrastructure.adapter.exception.comments.CommentsNotFoundException;
+
+
+public interface CommentsService {
+    ResponseCommentsDTO registerComments(RequestCommentsDTO request);
+    ResponseCommentsDTO updateCommentsById(Long id, RequestCommentsDTO request) throws CommentsNotFoundException;
+    void deleteComments(Long Id);
+
+}
