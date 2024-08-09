@@ -24,6 +24,7 @@ public interface AnimeDboMapper {
     AnimeEntity toDbo(Anime domain);
 
     @InheritInverseConfiguration
+    @Mapping(target = "episodes", ignore = true)
     Anime toDomain(AnimeEntity entity);
 
     default List<Genre> mapToGenres(List<GenreEntity> genreEntities) {

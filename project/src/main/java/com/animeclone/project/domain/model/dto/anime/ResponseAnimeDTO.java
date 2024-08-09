@@ -13,5 +13,7 @@ public record ResponseAnimeDTO(String name, LocalDateTime dateAired,
                                String premiere,
                                String description,
                                Double score,
+                               String animeTypeEnum,
+                               String statusEnum,
                                Set<GenreDTO> genres) {
 }

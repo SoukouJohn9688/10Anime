@@ -35,9 +35,10 @@ public class EpisodeEntity {
     }
     public QualityEnum qualityEnum;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private AnimeEntity animeEntity;
 
-    @OneToMany(mappedBy = "episodeEntity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "episodeEntity", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<CommentsEntity> commentsEntity;
 }

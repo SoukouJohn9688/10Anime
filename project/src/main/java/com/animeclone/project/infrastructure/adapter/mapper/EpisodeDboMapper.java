@@ -20,6 +20,7 @@ public interface EpisodeDboMapper {
     EpisodeEntity toDbo(Episode domain);
 
     @InheritInverseConfiguration
+    @Mapping(target = "anime", ignore = true)
     Episode toDomain(EpisodeEntity entity);
 
     default List<Episode> toEpisodeDomainList(List<EpisodeEntity> episodeListDB) {

@@ -37,6 +37,7 @@ public class AnimeEntity {
     private AnimeTypeEnum animeTypeEnum;
 
     @OneToMany(mappedBy = "animeEntity", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<EpisodeEntity> episodes;
 
     @ManyToMany(fetch = FetchType.EAGER)
