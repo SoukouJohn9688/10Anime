@@ -28,7 +28,8 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
 
     @Override
     public List<Episode> findall() {
-        return episodeDboMapper.toEpisodeDomainList(episodeRepository.findAll());
+        List<EpisodeEntity> listDB=episodeRepository.findAll();
+        return episodeDboMapper.toEpisodeDomainList(listDB);
     }
 
     @Override
@@ -70,10 +71,10 @@ public class EpisodeSpringJpaAdapter implements EpisodePersistencePort {
 
             animedb.get().getEpisodes().add(episode);
            AnimeEntity response= animeRepository.save(animedb.get());
-
-        for (EpisodeEntity ep:response.getEpisodes()){
-            System.out.println(ep);
-        }
+//
+//        for (EpisodeEntity ep:response.getEpisodes()){
+//            System.out.println(ep);
+//        }
             return "Episodio guardado con exito para el Anime con Id: "+animeId;
 
     }

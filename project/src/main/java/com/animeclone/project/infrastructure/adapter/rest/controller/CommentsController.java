@@ -36,7 +36,7 @@ public class CommentsController {
     }
 
     @PostMapping("/registry/{episodeId}")
-    private ResponseCommentsDTO registerCommentsByEpisodeId(@PathVariable Long episodeId,@RequestBody RequestCommentsDTO request) throws EpisodeNotFoundException, CommentsNotFoundException {
+    private String registerCommentsByEpisodeId(@PathVariable Long episodeId,@RequestBody RequestCommentsDTO request) throws EpisodeNotFoundException, CommentsNotFoundException {
 
         return commentsService.registerCommentsByEpisodeId(episodeId,request);
     }

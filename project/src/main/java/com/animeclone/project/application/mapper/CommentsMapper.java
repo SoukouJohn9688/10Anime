@@ -1,12 +1,8 @@
 package com.animeclone.project.application.mapper;
 
-
-import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.model.Comments;
 import com.animeclone.project.domain.model.dto.Comments.RequestCommentsDTO;
 import com.animeclone.project.domain.model.dto.Comments.ResponseCommentsDTO;
-import com.animeclone.project.domain.model.dto.anime.RequestAnimeDTO;
-import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -28,7 +24,4 @@ public interface CommentsMapper {
                 .map(this::DomainToResponse)
                 .toList();
     }
-
-
-
 }

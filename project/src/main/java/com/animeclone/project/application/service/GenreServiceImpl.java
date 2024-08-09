@@ -10,6 +10,7 @@ import com.animeclone.project.infrastructure.adapter.exception.genre.GenreNotFou
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Set<ResponseGenreDTO> getGenres() {
+    public List<ResponseGenreDTO> getGenres() {
 
 
         return genreMapper.toGenresResponseList(genrePersistencePort.getAll());

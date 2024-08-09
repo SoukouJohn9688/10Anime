@@ -54,13 +54,13 @@ public class CommentsServiceImpl implements CommentsService {
 //    }
 
     @Override
-    public ResponseCommentsDTO registerCommentsByEpisodeId(Long episodeId, RequestCommentsDTO requestCommentsDTO) throws CommentsNotFoundException {
+    public String registerCommentsByEpisodeId(Long episodeId, RequestCommentsDTO requestCommentsDTO) throws CommentsNotFoundException {
 
         Comments commentDomain = commentsMapper.DTOtoDomain(requestCommentsDTO);
 
-        Comments commentToPersist = commentsPersistencePort.registerCommentsByEpisodeId(episodeId, commentDomain);
+        String commentToPersist = commentsPersistencePort.registerCommentsByEpisodeId(episodeId, commentDomain);
 
-        return commentsMapper.DomainToResponse(commentToPersist);
+        return commentToPersist;
     }
 
 }

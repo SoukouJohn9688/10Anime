@@ -1,6 +1,7 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
-import com.animeclone.project.domain.model.Episode;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,30 +22,22 @@ public class EpisodeEntity {
     private Long episodeId;
     private String name;
 
-
-
     public enum TypeLanguageEnum {
         JAPANESE,
-        ENGLISH}
+        ENGLISH
+    }
     public TypeLanguageEnum typeLanguageEnum;
 
-    public enum QualityEnum{
+    public enum QualityEnum {
         MQ720p,
         HQ1080p,
         HQ1440p
     }
-
-   public QualityEnum qualityEnum;
-
+    public QualityEnum qualityEnum;
 
     @ManyToOne
     private AnimeEntity animeEntity;
 
-
     @OneToMany(mappedBy = "episodeEntity", cascade = CascadeType.ALL)
     private List<CommentsEntity> commentsEntity;
-
-
-
-
 }

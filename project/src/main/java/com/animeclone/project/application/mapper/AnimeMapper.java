@@ -23,30 +23,27 @@ public interface AnimeMapper {
     @Mapping(source = "duration", target = "duration")
     @Mapping(source = "views", target = "views")
     @Mapping(source = "premiere", target = "premiere")
-    //@Mapping(source = "quality", target = "quality")
     @Mapping(source = "score", target = "score")
     @Mapping(source = "name", target = "name")
-    @Mapping(source = "animeTypeEnum",target = "animeTypeEnum")
-    @Mapping(source = "statusEnum",target = "statusEnum")
+    @Mapping(source = "animeTypeEnum", target = "animeTypeEnum")
+    @Mapping(source = "statusEnum", target = "statusEnum")
     @Mapping(source = "genres", target = "genres")
     Anime DTOtoDomain(RequestAnimeDTO request);
-
-
 
     @InheritInverseConfiguration
     ResponseAnimeDTO DomainToResponse(Anime anime);
 
     default List<Genre> mapToGenres(List<GenreDTO> genres) {
         return genres.stream()
-                .map(dto -> new Genre(dto.genreId(),dto.name()))
+                .map(dto -> new Genre(dto.genreId(), dto.name()))
                 .toList();
     }
+
     default List<GenreDTO> mapToGenreDTOs(List<Genre> genres) {
         return genres.stream()
                 .map(genre -> new GenreDTO(genre.getGenreId(), genre.getName()))
                 .toList();
     }
-
 
     default List<ResponseAnimeDTO> toAnimeResponseList(List<Anime> animes) {
         return animes.stream()
@@ -54,5 +51,3 @@ public interface AnimeMapper {
                 .toList();
     }
 }
-
-

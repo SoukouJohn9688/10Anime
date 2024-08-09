@@ -1,17 +1,14 @@
 package com.animeclone.project.infrastructure.adapter.mapper;
 
-
 import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.model.Genre;
-import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
+import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
+
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface AnimeDboMapper {
@@ -28,8 +25,6 @@ public interface AnimeDboMapper {
 
     @InheritInverseConfiguration
     Anime toDomain(AnimeEntity entity);
-
-
 
     default List<Genre> mapToGenres(List<GenreEntity> genreEntities) {
         return genreEntities.stream()

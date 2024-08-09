@@ -6,7 +6,6 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-
 @Mapper(componentModel = "spring")
 public interface CommentsDboMapper {
 
@@ -16,5 +15,4 @@ public interface CommentsDboMapper {
 
     @InheritInverseConfiguration
     Comments toDomain(CommentsEntity entity);
-
 }

@@ -10,5 +10,5 @@ public interface CommentsService {
     ResponseCommentsDTO registerComments(RequestCommentsDTO request);
     ResponseCommentsDTO updateCommentsById(Long id, RequestCommentsDTO request) throws CommentsNotFoundException;
     void deleteComments(Long Id);
-    ResponseCommentsDTO registerCommentsByEpisodeId(Long episodeId ,RequestCommentsDTO request) throws CommentsNotFoundException;
+    String registerCommentsByEpisodeId(Long episodeId ,RequestCommentsDTO request) throws CommentsNotFoundException;
 }

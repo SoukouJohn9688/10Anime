@@ -11,5 +11,5 @@ public interface CommentsPersistencePort {
 
     void deleteById(Long Id);
 
-    Comments registerCommentsByEpisodeId(Long episodeId,Comments comments) throws CommentsNotFoundException;
+    String registerCommentsByEpisodeId(Long episodeId,Comments comments) throws CommentsNotFoundException;
 }

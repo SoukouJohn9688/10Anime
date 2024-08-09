@@ -1,16 +1,13 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
-
 import com.animeclone.project.domain.enumerations.AnimeTypeEnum;
 import com.animeclone.project.domain.enumerations.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -33,30 +30,14 @@ public class AnimeEntity {
     private Double score;
     private String name;
 
-//    public enum StatusEnum{
-//        ONGOING,
-//        COMPLETED,
-//        HALTED,
-//        CANCELLED
-//    }
-
     @Enumerated(EnumType.STRING)
     private StatusEnum statusEnum;
 
-//    public enum AnimeTypeEnum{
-//        OVA,
-//        ONA,
-//        MOVIE,
-//        TVSERIES,
-//
-//    }
     @Enumerated(EnumType.STRING)
     private AnimeTypeEnum animeTypeEnum;
 
-    @OneToMany(mappedBy = "animeEntity",cascade = CascadeType.ALL)
-
+    @OneToMany(mappedBy = "animeEntity", cascade = CascadeType.ALL)
     private List<EpisodeEntity> episodes;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -66,7 +47,6 @@ public class AnimeEntity {
     )
     private List<GenreEntity> genres;
 
-
     @ManyToMany
     @JoinTable(
             name = "anime_studio",
@@ -74,8 +54,4 @@ public class AnimeEntity {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<StudioEntity> studios;
-
-
-
-
 }

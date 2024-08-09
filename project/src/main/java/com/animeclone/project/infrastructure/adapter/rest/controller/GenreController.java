@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class GenreController {
     }
 
     @GetMapping
-    private ResponseEntity<Set<ResponseGenreDTO>> getAll(){
+    private ResponseEntity<List<ResponseGenreDTO>> getAll(){
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(genreService.getGenres());

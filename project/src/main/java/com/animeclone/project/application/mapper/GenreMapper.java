@@ -1,10 +1,6 @@
 package com.animeclone.project.application.mapper;
 
-
-import com.animeclone.project.domain.model.Comments;
 import com.animeclone.project.domain.model.Genre;
-import com.animeclone.project.domain.model.dto.Comments.RequestCommentsDTO;
-import com.animeclone.project.domain.model.dto.Comments.ResponseCommentsDTO;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.model.dto.genre.ResponseGenreDTO;
 import org.mapstruct.InheritInverseConfiguration;
@@ -13,7 +9,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
@@ -24,14 +19,11 @@ public interface GenreMapper {
     Genre DTOtoDomain(RequestGenreDTO request);
 
     @InheritInverseConfiguration
-    ResponseGenreDTO DomainToResponse(Genre comments);
+    ResponseGenreDTO DomainToResponse(Genre genre);
 
-    default Set<ResponseGenreDTO> toGenresResponseList(Set<Genre> Genres) {
-        return Genres.stream()
+    default List<ResponseGenreDTO> toGenresResponseList(List<Genre> genres) {
+        return genres.stream()
                 .map(this::DomainToResponse)
-                .collect(Collectors.toSet());
+                .toList();
     }
-
-
-
 }

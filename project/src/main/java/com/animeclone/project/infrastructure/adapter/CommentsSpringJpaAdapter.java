@@ -71,7 +71,7 @@ public class CommentsSpringJpaAdapter implements CommentsPersistencePort {
 //    }
 
     @Override
-    public Comments registerCommentsByEpisodeId(Long episodeId, Comments request) {
+    public String registerCommentsByEpisodeId(Long episodeId, Comments request) {
 
         Optional<EpisodeEntity> episodedb = episodeRepository.findById(episodeId);
         if (episodedb.isEmpty()) {
@@ -82,10 +82,10 @@ public class CommentsSpringJpaAdapter implements CommentsPersistencePort {
         commentEntity.setEpisodeEntity(episodedb.get());
         episodedb.get().getCommentsEntity().add(commentEntity);
         EpisodeEntity response = episodeRepository.save(episodedb.get());
-               for (CommentsEntity comentario : response.getCommentsEntity()) {
-            System.out.println(comentario);
-        }
-           return commentsDboMapper.toDomain(commentEntity);
+//               for (CommentsEntity comentario : response.getCommentsEntity()) {
+//            System.out.println(comentario);
+//        }
+           return "Comentario guardado con exito para el Episodio con nombre: "+episodedb.get().getName();
     }
 
 
