@@ -1,5 +1,7 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,28 +19,26 @@ public class EpisodeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "episode_id")
-    private Integer episodeId;
-
-    private Integer animeId;
-    private enum TypeLanguage {
-        JAPONES,
-        INGLES}
+    private Long episodeId;
     private String name;
 
-    @ManyToOne
+    public enum TypeLanguageEnum {
+        JAPANESE,
+        ENGLISH
+    }
+    public TypeLanguageEnum typeLanguageEnum;
+
+    public enum QualityEnum {
+        MQ720p,
+        HQ1080p,
+        HQ1440p
+    }
+    public QualityEnum qualityEnum;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private AnimeEntity animeEntity;
 
-
-    @OneToMany(mappedBy = "episodeEntity")
+    @OneToMany(mappedBy = "episodeEntity", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<CommentsEntity> commentsEntity;
-
-
-    @ManyToMany
-    @JoinTable(
-            name = "episode_quality",
-            joinColumns = @JoinColumn(name = "quality_id"),
-            inverseJoinColumns = @JoinColumn(name = "episode_id")
-    )
-    private List<QualityEntity> qualitys;
-
 }
