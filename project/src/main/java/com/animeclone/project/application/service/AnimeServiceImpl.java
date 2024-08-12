@@ -104,5 +104,9 @@ public class AnimeServiceImpl implements AnimeService {
         return animeMapper.toAnimeResponseList(animePersistencePort.FindByDubbed(dubbed));
     }
 
+    @Override
+    public List<ResponseAnimeDTO> findByStatusDesc() {
+        return animeMapper.toAnimeResponseList(animePersistencePort.FindByStatusDesc());
+    }
 
 }

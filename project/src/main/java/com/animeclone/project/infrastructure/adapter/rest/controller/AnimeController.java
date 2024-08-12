@@ -92,6 +92,12 @@ public class AnimeController {
         return animeService.findByDubbed(dubbed);
     }
 
+    @GetMapping("/find/bystatusdesc")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByStatusDesc(){
+        return animeService.findByStatusDesc();
+    }
+
 
 
 

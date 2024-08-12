@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter;
 
+import com.animeclone.project.domain.enumerations.StatusEnum;
 import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.port.AnimePersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
@@ -154,5 +155,15 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         return animeDboMapper.toAnimeDomainList(animeRepository.findAll()
                 .stream()
                 .filter(ani->ani.getAnimeDubbedEnum().name().equals(dubbed)).toList());
+    }
+
+    @Override
+    public List<Anime> FindByStatusDesc() {
+        return animeDboMapper.toAnimeDomainList(
+                animeRepository.findAllByOrderByDateAiredDesc()
+                        .stream()
+                        .filter(ani -> ani.getStatusEnum() == StatusEnum.UPGOING)
+                        .toList()
+        );
     }
 }

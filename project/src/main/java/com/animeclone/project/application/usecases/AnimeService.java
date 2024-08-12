@@ -27,6 +27,7 @@ public interface AnimeService {
     List<ResponseAnimeDTO> findAllByOrderByDateAiredDesc();
     List<ResponseAnimeDTO>findByStatus(String status);
     List<ResponseAnimeDTO>findByDubbed(String dubbed);
+    List<ResponseAnimeDTO>findByStatusDesc();
 
 
 }

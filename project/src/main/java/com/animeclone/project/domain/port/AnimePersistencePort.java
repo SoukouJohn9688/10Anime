@@ -32,5 +32,7 @@ public interface AnimePersistencePort {
 
     List<Anime> FindByDubbed(String dubbed);
 
+    List<Anime> FindByStatusDesc();
+
 
 }

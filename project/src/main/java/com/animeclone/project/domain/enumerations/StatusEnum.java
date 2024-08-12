@@ -4,5 +4,6 @@ public enum StatusEnum {
     ONGOING,
     COMPLETED,
     HALTED,
-    CANCELLED
+    CANCELLED,
+    UPGOING
 }
