@@ -21,6 +21,7 @@ public interface AnimeDboMapper {
     @Mapping(source = "statusEnum", target = "statusEnum")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "genres", target = "genres")
+    @Mapping(source = "animeDubbedEnum", target = "animeDubbedEnum")
     AnimeEntity toDbo(Anime domain);
 
     @InheritInverseConfiguration

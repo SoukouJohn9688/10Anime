@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.repository;
 
+import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +22,11 @@ public interface GenreRepository extends JpaRepository<GenreEntity, Long> {
     default Stream<GenreEntity> streamByIds(List<Long> ids) {
         return findAllByGenreIds(ids).stream();
     }
+
+
+    @Query("SELECT a FROM GenreEntity a WHERE LOWER(a.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    List<GenreEntity> findByNameContainingIgnoreCase(@Param("name") String name);
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
+import com.animeclone.project.domain.enumerations.AnimeDubbedEnum;
 import com.animeclone.project.domain.enumerations.AnimeTypeEnum;
 import com.animeclone.project.domain.enumerations.StatusEnum;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -35,6 +36,9 @@ public class AnimeEntity {
 
     @Enumerated(EnumType.STRING)
     private AnimeTypeEnum animeTypeEnum;
+
+    @Enumerated(EnumType.STRING)
+    private AnimeDubbedEnum animeDubbedEnum;
 
     @OneToMany(mappedBy = "animeEntity", cascade = CascadeType.ALL)
     @JsonManagedReference

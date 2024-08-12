@@ -1,5 +1,6 @@
 package com.animeclone.project.domain.model;
 
+import com.animeclone.project.domain.enumerations.AnimeDubbedEnum;
 import com.animeclone.project.domain.enumerations.AnimeTypeEnum;
 import com.animeclone.project.domain.enumerations.StatusEnum;
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
@@ -39,6 +40,9 @@ public class Anime {
 
     @Enumerated(EnumType.STRING)
     private AnimeTypeEnum animeTypeEnum;
+
+    @Enumerated(EnumType.STRING)
+    private AnimeDubbedEnum animeDubbedEnum;
 
 
 

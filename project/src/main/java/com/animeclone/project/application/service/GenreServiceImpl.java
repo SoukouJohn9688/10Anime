@@ -2,7 +2,9 @@ package com.animeclone.project.application.service;
 
 import com.animeclone.project.application.mapper.GenreMapper;
 import com.animeclone.project.application.usecases.GenreService;
+import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.model.Genre;
+import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.model.dto.genre.ResponseGenreDTO;
 import com.animeclone.project.domain.port.GenrePersistencePort;
@@ -46,6 +48,13 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public void deleteById(Long id) {
          genrePersistencePort.deleteById(id);
+
+    }
+
+    @Override
+    public List<ResponseGenreDTO> findByName(String name) {
+        List<Genre> updateGenre=genrePersistencePort.FindByName(name);
+        return genreMapper.toGenresResponseList(updateGenre);
 
     }
 

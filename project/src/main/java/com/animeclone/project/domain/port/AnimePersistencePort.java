@@ -27,4 +27,10 @@ public interface AnimePersistencePort {
     List<Anime> FindByGenreName(String genreName);
     List<Anime> FindByType(String type);
     Anime getRandomAnime();
+    List<Anime> findAllByOrderByDateAiredDesc();
+    List<Anime> FindByStatus(String status);
+
+    List<Anime> FindByDubbed(String dubbed);
+
+
 }

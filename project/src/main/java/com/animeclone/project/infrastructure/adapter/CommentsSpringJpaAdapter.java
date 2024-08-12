@@ -57,18 +57,6 @@ public class CommentsSpringJpaAdapter implements CommentsPersistencePort {
         commentsRepository.deleteById(Id);
     }
 
-//    @Override
-//    public Comments registerCommentsByEpisodeId(Long episodeId, Comments comment) throws EpisodeNotFoundException {
-//          EpisodeEntity episodeEntity = episodeRepository.findById(episodeId)
-//                .orElseThrow(() -> new EpisodeNotFoundException("El episodio con el id " + episodeId + " no se encontró"));
-//
-//
-//
-//        CommentsEntity commentEntity = commentsDboMapper.toDbo(comment);
-//        commentEntity.setEpisodeEntity(episodeEntity);
-//        CommentsEntity savedCommentEntity = commentsRepository.save(commentEntity);
-//        return commentsDboMapper.toDomain(savedCommentEntity);
-//    }
 
     @Override
     public String registerCommentsByEpisodeId(Long episodeId, Comments request) {

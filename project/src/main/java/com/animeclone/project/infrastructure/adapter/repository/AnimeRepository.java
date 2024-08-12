@@ -19,8 +19,9 @@ public interface AnimeRepository extends JpaRepository<AnimeEntity, Long> {
     @Query("SELECT a FROM AnimeEntity a JOIN a.genres g WHERE LOWER(g.name) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<AnimeEntity> findByGenreNameContainingIgnoreCase(@Param("name") String name);
 
-
     //List<AnimeEntity> findByTypeContainingIgnoreCase(String name);
+
+    List<AnimeEntity> findAllByOrderByDateAiredDesc();
 
 
 

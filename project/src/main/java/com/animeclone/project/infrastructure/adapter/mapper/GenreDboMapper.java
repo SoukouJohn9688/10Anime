@@ -1,6 +1,8 @@
 package com.animeclone.project.infrastructure.adapter.mapper;
 
+import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.model.Genre;
+import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -35,4 +37,11 @@ public interface GenreDboMapper {
                 .map(genreEntity -> new Genre(genreEntity.getGenreId(), genreEntity.getName()))
                 .toList();
     }
+
+    default List<Genre> toGenreDomainList(List<GenreEntity> genreListDB) {
+        return genreListDB.stream()
+                .map(this::toDomain)
+                .toList();
+    }
+
 }

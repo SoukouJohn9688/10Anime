@@ -24,6 +24,9 @@ public interface AnimeService {
     List<ResponseAnimeDTO> findByGenreName(String genreName);
     List<ResponseAnimeDTO> findByType(String type);
     ResponseAnimeDTO getRandomAnime();
+    List<ResponseAnimeDTO> findAllByOrderByDateAiredDesc();
+    List<ResponseAnimeDTO>findByStatus(String status);
+    List<ResponseAnimeDTO>findByDubbed(String dubbed);
 
 
 }

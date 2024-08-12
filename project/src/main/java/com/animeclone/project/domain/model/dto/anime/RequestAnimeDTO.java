@@ -1,8 +1,6 @@
 package com.animeclone.project.domain.model.dto.anime;
-import com.animeclone.project.domain.model.Genre;
+
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
-import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
-import com.animeclone.project.infrastructure.adapter.rest.advice.ValidEnum;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.Valid;
@@ -55,7 +53,9 @@ public record RequestAnimeDTO(
         String animeTypeEnum,
 
         @Enumerated(EnumType.STRING)
-        String statusEnum
+        String statusEnum,
+        @Enumerated(EnumType.STRING)
+        String animeDubbedEnum
 
 
 

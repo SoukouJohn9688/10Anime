@@ -93,6 +93,7 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         animedb.get().setAnimeTypeEnum(animeToUpdate.getAnimeTypeEnum());
         animedb.get().setStatusEnum(animeToUpdate.getStatusEnum());
         animedb.get().setViews(animeToUpdate.getViews());
+        animedb.get().setAnimeDubbedEnum(animeToUpdate.getAnimeDubbedEnum());
 
         animeRepository.save(animedb.get());
         return animeDboMapper.toDomain(animeToUpdate);
@@ -135,5 +136,23 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         Random random = new Random();
         Long randomInt = random.nextLong(listDB.size());
         return animeDboMapper.toDomain(animeRepository.findById(randomInt).get());
+    }
+
+    @Override
+    public List<Anime> findAllByOrderByDateAiredDesc() {
+        return animeDboMapper.toAnimeDomainList(animeRepository.findAllByOrderByDateAiredDesc());
+    }
+    @Override
+    public List<Anime> FindByStatus(String status) {
+               return animeDboMapper.toAnimeDomainList(animeRepository.findAll()
+                .stream()
+                .filter(ani->ani.getStatusEnum().name().equals(status)).toList());
+    }
+
+    @Override
+    public List<Anime> FindByDubbed(String dubbed) {
+        return animeDboMapper.toAnimeDomainList(animeRepository.findAll()
+                .stream()
+                .filter(ani->ani.getAnimeDubbedEnum().name().equals(dubbed)).toList());
     }
 }

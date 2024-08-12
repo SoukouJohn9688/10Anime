@@ -88,5 +88,21 @@ public class AnimeServiceImpl implements AnimeService {
         return animeMapper.DomainToResponse(animePersistencePort.getRandomAnime());
     }
 
+    @Override
+    public List<ResponseAnimeDTO> findAllByOrderByDateAiredDesc() {
+        var responseList=animeMapper.toAnimeResponseList(animePersistencePort.findAllByOrderByDateAiredDesc());
+        return responseList;
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> findByStatus(String status) {
+        return animeMapper.toAnimeResponseList(animePersistencePort.FindByStatus(status));
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> findByDubbed(String dubbed) {
+        return animeMapper.toAnimeResponseList(animePersistencePort.FindByDubbed(dubbed));
+    }
+
 
 }

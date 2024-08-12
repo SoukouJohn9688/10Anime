@@ -74,6 +74,24 @@ public class AnimeController {
         return animeService.getRandomAnime();
     }
 
+    @GetMapping("/find/desc")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> findAllByOrderByDateAiredDesc(){
+        return animeService.findAllByOrderByDateAiredDesc();
+    }
+
+    @GetMapping("/find/bystatus/{animeStatus}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByStatus(@PathVariable String animeStatus){
+        return animeService.findByStatus(animeStatus);
+    }
+
+    @GetMapping("/find/bydubbed/{dubbed}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByDubbed(@PathVariable String dubbed){
+        return animeService.findByDubbed(dubbed);
+    }
+
 
 
 

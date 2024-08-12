@@ -47,4 +47,10 @@ public class GenreController {
         return genreService.edit(id,request);
     }
 
+    @GetMapping("/find/{animeName}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseGenreDTO> getAnimeByName(@PathVariable String animeName){
+        return genreService.findByName(animeName);
+    }
+
 }

@@ -12,7 +12,6 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AnimeMapper {
@@ -28,6 +27,7 @@ public interface AnimeMapper {
     @Mapping(source = "animeTypeEnum", target = "animeTypeEnum")
     @Mapping(source = "statusEnum", target = "statusEnum")
     @Mapping(source = "genres", target = "genres")
+    @Mapping(source = "animeDubbedEnum", target = "animeDubbedEnum")
     Anime DTOtoDomain(RequestAnimeDTO request);
 
     @InheritInverseConfiguration
