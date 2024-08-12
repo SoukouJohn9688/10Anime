@@ -16,7 +16,7 @@ public interface EpisodeDboMapper {
     @Mapping(source = "typeLanguageEnum", target = "typeLanguageEnum")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "anime", target = "animeEntity")
-    @Mapping(source = "comments", target = "commentsEntity")
+   // @Mapping(source = "comments", target = "commentsEntity")
     EpisodeEntity toDbo(Episode domain);
 
     @InheritInverseConfiguration
