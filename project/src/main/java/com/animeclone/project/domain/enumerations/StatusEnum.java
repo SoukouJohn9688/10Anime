@@ -5,5 +5,5 @@ public enum StatusEnum {
     COMPLETED,
     HALTED,
     CANCELLED,
-    UPGOING
+    UPCOMING
 }

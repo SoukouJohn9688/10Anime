@@ -162,7 +162,7 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         return animeDboMapper.toAnimeDomainList(
                 animeRepository.findAllByOrderByDateAiredDesc()
                         .stream()
-                        .filter(ani -> ani.getStatusEnum() == StatusEnum.UPGOING)
+                        .filter(ani -> ani.getStatusEnum() == StatusEnum.UPCOMING)
                         .toList()
         );
     }
