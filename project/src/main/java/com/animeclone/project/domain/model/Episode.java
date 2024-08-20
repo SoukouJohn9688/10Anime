@@ -1,19 +1,39 @@
 package com.animeclone.project.domain.model;
 
 
+import com.animeclone.project.domain.enumerations.QualityEnum;
+import com.animeclone.project.domain.enumerations.TypeLanguageEnum;
+import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
+import com.animeclone.project.infrastructure.adapter.entity.CommentsEntity;
+import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Data
 @Getter
 @Setter
+@Builder
 public class Episode {
-    private Integer id;
-
-
-    private enum TypeLanguage {
-        JAPONES,
-        INGLES}
+    private Long episodeId;
     private String name;
+
+    private Anime anime;
+
+    private List<Comments> comments;
+
+    @Enumerated(EnumType.STRING)
+    private TypeLanguageEnum typeLanguageEnum;
+
+
+    @Enumerated(EnumType.STRING)
+    private QualityEnum qualityEnum;
+
 }

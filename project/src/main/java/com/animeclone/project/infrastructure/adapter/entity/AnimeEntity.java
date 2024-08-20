@@ -1,17 +1,19 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
-
+import com.animeclone.project.domain.enumerations.AnimeDubbedEnum;
+import com.animeclone.project.domain.enumerations.AnimeTypeEnum;
+import com.animeclone.project.domain.enumerations.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "anime_tbl")
@@ -25,39 +27,30 @@ public class AnimeEntity {
     private float duration;
     private int views;
     private String premiere;
-    private String quality;
     private String description;
+    private Double score;
+    private String name;
 
-    @OneToMany(mappedBy = "animeEntity")
+    @Enumerated(EnumType.STRING)
+    private StatusEnum statusEnum;
+
+    @Enumerated(EnumType.STRING)
+    private AnimeTypeEnum animeTypeEnum;
+
+    @Enumerated(EnumType.STRING)
+    private AnimeDubbedEnum animeDubbedEnum;
+
+    @OneToMany(mappedBy = "animeEntity", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<EpisodeEntity> episodes;
 
-    @OneToOne
-    private StatusEntity status;
-
-    @OneToOne
-    private ScoreEntity score;
-
-    @ManyToOne
-    private TypeAnimeEntity typeAnime;
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "anime_genre",
             joinColumns = @JoinColumn(name = "anime_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<GenreEntity> genres;
-
-
-    @ManyToMany
-    @JoinTable(
-            name = "anime_studio",
-            joinColumns = @JoinColumn(name = "anime_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
-    private List<StudioEntity> studios;
-
-
-
-
+    @ManyToOne
+    private StudioEntity studio;
 }

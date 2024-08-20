@@ -1,15 +1,15 @@
 package com.animeclone.project.domain.model;
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Data
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Studio {
-    private long id;
+    private long studioId;
     private String name;
 
 }
