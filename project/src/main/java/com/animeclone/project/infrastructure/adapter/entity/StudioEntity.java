@@ -1,9 +1,13 @@
+
 package com.animeclone.project.infrastructure.adapter.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -18,4 +22,10 @@ public class StudioEntity {
     private long studioId;
     private String name;
 
+
+    @OneToMany(mappedBy = "studio")
+    private List<AnimeEntity> anime;
+
+
 }
+

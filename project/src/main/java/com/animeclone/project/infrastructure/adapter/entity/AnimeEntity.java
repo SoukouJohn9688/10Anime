@@ -51,12 +51,6 @@ public class AnimeEntity {
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
     private List<GenreEntity> genres;
-
-    @ManyToMany
-    @JoinTable(
-            name = "anime_studio",
-            joinColumns = @JoinColumn(name = "anime_id"),
-            inverseJoinColumns = @JoinColumn(name = "genre_id")
-    )
-    private List<StudioEntity> studios;
+    @ManyToOne
+    private StudioEntity studio;
 }

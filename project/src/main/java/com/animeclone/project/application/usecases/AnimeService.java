@@ -6,6 +6,7 @@ import com.animeclone.project.domain.model.dto.episode.RequestEpisodeDTO;
 import com.animeclone.project.domain.model.dto.episode.ResponseEpisodeDTO;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
+import com.animeclone.project.infrastructure.adapter.exception.studio.StudioNotFoundException;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public interface AnimeService {
 
 
-    ResponseAnimeDTO registerAnime(RequestAnimeDTO request);
+    ResponseAnimeDTO registerAnime(RequestAnimeDTO request) throws StudioNotFoundException;
     ResponseAnimeDTO getById(Long id);
     List<ResponseAnimeDTO> getAll();
     ResponseAnimeDTO updateAnimeById(Long id, RequestAnimeDTO request) throws AnimeNotFoundException;
@@ -28,6 +29,5 @@ public interface AnimeService {
     List<ResponseAnimeDTO>findByStatus(String status);
     List<ResponseAnimeDTO>findByDubbed(String dubbed);
     List<ResponseAnimeDTO>findByStatusDesc();
-
-
+    List<ResponseAnimeDTO> findByStudi_Name(String studio);
 }

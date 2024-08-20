@@ -2,14 +2,18 @@ package com.animeclone.project.infrastructure.adapter;
 
 import com.animeclone.project.domain.enumerations.StatusEnum;
 import com.animeclone.project.domain.model.Anime;
+import com.animeclone.project.domain.model.Studio;
 import com.animeclone.project.domain.port.AnimePersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
+import com.animeclone.project.infrastructure.adapter.entity.StudioEntity;
 import com.animeclone.project.infrastructure.adapter.exception.AnimeException;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
+import com.animeclone.project.infrastructure.adapter.exception.studio.StudioNotFoundException;
 import com.animeclone.project.infrastructure.adapter.mapper.AnimeDboMapper;
 import com.animeclone.project.infrastructure.adapter.repository.AnimeRepository;
 import com.animeclone.project.infrastructure.adapter.repository.GenreRepository;
+import com.animeclone.project.infrastructure.adapter.repository.StudioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,9 +33,10 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
     private final AnimeRepository animeRepository;
     private final AnimeDboMapper animeDboMapper;
     private final GenreRepository genreRepository;
+    private final StudioRepository studioRepository;
 
     @Override
-    public Anime create(Anime request) {
+    public Anime create(Anime request) throws StudioNotFoundException {
         AnimeEntity animeToSave = animeDboMapper.toDbo(request);
 
         List<Long> genreIds = animeToSave.getGenres().stream()
@@ -42,6 +47,11 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
 
 //        animeToSave.setGenres(genres);
         animeToSave.setGenres(genres);
+
+        StudioEntity studio = studioRepository.findById(request.getStudio().getStudioId())
+                .orElseThrow(() -> new StudioNotFoundException("Studio not found with id: " + request.getStudio().getStudioId()));
+
+
 
 //        for (GenreEntity genre : genres) {
 //            genre.getAnimes().add(animeToSave);
@@ -89,7 +99,7 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         animedb.get().setEpisodes(animeToUpdate.getEpisodes());
         animedb.get().setScore(animeToUpdate.getScore());
         animedb.get().setPremiere(animeToUpdate.getPremiere());
-        animedb.get().setStudios(animeToUpdate.getStudios());
+        animedb.get().setStudio(animeToUpdate.getStudio());
         animedb.get().setDateAired(animeToUpdate.getDateAired());
         animedb.get().setAnimeTypeEnum(animeToUpdate.getAnimeTypeEnum());
         animedb.get().setStatusEnum(animeToUpdate.getStatusEnum());
@@ -166,4 +176,10 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
                         .toList()
         );
     }
-}
+
+    @Override
+    public List<Anime> FindByStudio(String studio) {
+        return animeDboMapper.toAnimeDomainList(animeRepository.findAllByStudio_Name(studio));
+    }
+    }
+

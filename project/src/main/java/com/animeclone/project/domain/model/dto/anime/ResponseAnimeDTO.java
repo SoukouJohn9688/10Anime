@@ -1,5 +1,6 @@
 package com.animeclone.project.domain.model.dto.anime;
 
+import com.animeclone.project.domain.model.Studio;
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
 
 import java.time.LocalDateTime;
@@ -14,5 +15,6 @@ public record ResponseAnimeDTO(String name, LocalDateTime dateAired,
                                String animeTypeEnum,
                                String statusEnum,
                                String animeDubbedEnum,
-                               Set<GenreDTO> genres) {
+                               Set<GenreDTO> genres,
+                               Studio studio) {
 }

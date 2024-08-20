@@ -6,6 +6,7 @@ import com.animeclone.project.domain.enumerations.StatusEnum;
 import com.animeclone.project.domain.model.dto.genre.GenreDTO;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
+import com.animeclone.project.infrastructure.adapter.entity.StudioEntity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Builder;
@@ -34,6 +35,7 @@ public class Anime {
     private Double score;
     private List<Genre> genres;
     private List<Episode> episodes;
+    private Studio studio;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum statusEnum;
@@ -43,6 +45,8 @@ public class Anime {
 
     @Enumerated(EnumType.STRING)
     private AnimeDubbedEnum animeDubbedEnum;
+
+
 
 
 

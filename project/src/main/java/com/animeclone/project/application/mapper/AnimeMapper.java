@@ -28,6 +28,7 @@ public interface AnimeMapper {
     @Mapping(source = "statusEnum", target = "statusEnum")
     @Mapping(source = "genres", target = "genres")
     @Mapping(source = "animeDubbedEnum", target = "animeDubbedEnum")
+    @Mapping(source = "studio", target = "studio")
     Anime DTOtoDomain(RequestAnimeDTO request);
 
     @InheritInverseConfiguration

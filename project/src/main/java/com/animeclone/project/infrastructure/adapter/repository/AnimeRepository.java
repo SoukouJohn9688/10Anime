@@ -23,6 +23,10 @@ public interface AnimeRepository extends JpaRepository<AnimeEntity, Long> {
 
     List<AnimeEntity> findAllByOrderByDateAiredDesc();
 
+    List<AnimeEntity> findAllByStudio_Name(String name);
+
+
+
 
     }
 

@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Studio {
-    private long id;
+    private long studioId;
     private String name;
 
 }

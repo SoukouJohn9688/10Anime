@@ -10,6 +10,7 @@ import com.animeclone.project.domain.model.dto.episode.ResponseEpisodeDTO;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.port.AnimePersistencePort;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
+import com.animeclone.project.infrastructure.adapter.exception.studio.StudioNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class AnimeServiceImpl implements AnimeService {
 
 
     @Override
-    public ResponseAnimeDTO registerAnime(RequestAnimeDTO request) {
+    public ResponseAnimeDTO registerAnime(RequestAnimeDTO request) throws StudioNotFoundException {
         Anime convertDomain=animeMapper.DTOtoDomain(request);
         Anime registeredAnime=animePersistencePort.create(convertDomain);
         return animeMapper.DomainToResponse(registeredAnime);
@@ -107,6 +108,11 @@ public class AnimeServiceImpl implements AnimeService {
     @Override
     public List<ResponseAnimeDTO> findByStatusDesc() {
         return animeMapper.toAnimeResponseList(animePersistencePort.FindByStatusDesc());
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> findByStudi_Name(String studio) {
+        return animeMapper.toAnimeResponseList(animePersistencePort.FindByStudio(studio));
     }
 
 }

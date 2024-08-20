@@ -1,22 +1,18 @@
 package com.animeclone.project.infrastructure.adapter.rest.controller;
 
 
-import com.animeclone.project.application.mapper.AnimeMapper;
 import com.animeclone.project.application.usecases.AnimeService;
 import com.animeclone.project.domain.model.dto.anime.RequestAnimeDTO;
 import com.animeclone.project.domain.model.dto.anime.ResponseAnimeDTO;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
-import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
-import com.animeclone.project.infrastructure.adapter.utils.Response;
+import com.animeclone.project.infrastructure.adapter.exception.studio.StudioNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/anime")
@@ -29,7 +25,7 @@ public class AnimeController {
 
     @PostMapping("/registry")
     @ResponseStatus(HttpStatus.OK)
-    private ResponseAnimeDTO registerAnime(@Valid @RequestBody RequestAnimeDTO request){
+    private ResponseAnimeDTO registerAnime(@Valid @RequestBody RequestAnimeDTO request) throws StudioNotFoundException {
         return animeService.registerAnime(request);
     }
 
@@ -97,6 +93,13 @@ public class AnimeController {
     private List<ResponseAnimeDTO> getAnimeByStatusDesc(){
         return animeService.findByStatusDesc();
     }
+
+    @GetMapping("/find/bystudio/{estudio}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<ResponseAnimeDTO> getAnimeByStudio(@PathVariable String studio){
+        return animeService.findByStudi_Name(studio);
+    }
+
 
 
 

@@ -2,14 +2,16 @@ package com.animeclone.project.domain.port;
 
 import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
+import com.animeclone.project.infrastructure.adapter.entity.StudioEntity;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
+import com.animeclone.project.infrastructure.adapter.exception.studio.StudioNotFoundException;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 public interface AnimePersistencePort {
 
-    Anime create(Anime request);
+    Anime create(Anime request) throws StudioNotFoundException;
 
     Anime getById(Long id);
 
@@ -33,6 +35,7 @@ public interface AnimePersistencePort {
     List<Anime> FindByDubbed(String dubbed);
 
     List<Anime> FindByStatusDesc();
+    List<Anime> FindByStudio(String studio);
 
 
 }
