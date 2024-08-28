@@ -2,20 +2,16 @@ package com.animeclone.project.infrastructure.adapter;
 
 import com.animeclone.project.domain.model.Genre;
 import com.animeclone.project.domain.port.GenrePersistencePort;
-import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
-import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
-import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.exception.genre.GenreNotFoundException;
 import com.animeclone.project.infrastructure.adapter.mapper.GenreDboMapper;
 import com.animeclone.project.infrastructure.adapter.repository.GenreRepository;
+import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @RequiredArgsConstructor
 @Service

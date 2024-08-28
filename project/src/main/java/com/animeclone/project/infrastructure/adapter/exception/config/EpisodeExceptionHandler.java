@@ -1,6 +1,5 @@
 package com.animeclone.project.infrastructure.adapter.exception.config;
 
-import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeAlreadyExistException;
 import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeAlreadyExistException;
 import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import org.springframework.http.HttpStatus;

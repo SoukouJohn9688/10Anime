@@ -6,7 +6,6 @@ import com.animeclone.project.domain.port.CommentsPersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.CommentsEntity;
 import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import com.animeclone.project.infrastructure.adapter.exception.comments.CommentsNotFoundException;
-import com.animeclone.project.infrastructure.adapter.exception.episode.EpisodeNotFoundException;
 import com.animeclone.project.infrastructure.adapter.mapper.CommentsDboMapper;
 import com.animeclone.project.infrastructure.adapter.repository.CommentsRepository;
 import com.animeclone.project.infrastructure.adapter.repository.EpisodeRepository;

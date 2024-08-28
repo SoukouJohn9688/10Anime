@@ -67,25 +67,46 @@ public class AnimeServiceImpl implements AnimeService {
 
     @Override
     public List<ResponseAnimeDTO> findByName(String name) {
-       List<Anime> updatedAnime=animePersistencePort.FindByName(name);
+       List<Anime> updatedAnime=animePersistencePort.findByName(name);
         return animeMapper.toAnimeResponseList(updatedAnime);
 
     }
 
     @Override
     public List<ResponseAnimeDTO> findByGenreName(String genreName) {
-        List<Anime> list=animePersistencePort.FindByGenreName(genreName);
+        List<Anime> list=animePersistencePort.findByGenreName(genreName);
         return animeMapper.toAnimeResponseList(list) ;
     }
 
     @Override
     public List<ResponseAnimeDTO> findByType(String type) {
-        return animeMapper.toAnimeResponseList(animePersistencePort.FindByType(type));
+        return animeMapper.toAnimeResponseList(animePersistencePort.findByType(type));
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> findByYear(int year) throws AnimeNotFoundException {
+
+        return animeMapper.toAnimeResponseList(animePersistencePort.findByYear(year));
     }
 
     @Override
     public ResponseAnimeDTO getRandomAnime() {
         return animeMapper.DomainToResponse(animePersistencePort.getRandomAnime());
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> listTopAnimeToday() {
+        return animeMapper.toAnimeResponseList(animePersistencePort.getTopToday());
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> listTopAnimeWeek() {
+        return animeMapper.toAnimeResponseList(animePersistencePort.getTopWeek());
+    }
+
+    @Override
+    public List<ResponseAnimeDTO> listTopAnimeMonth() {
+        return animeMapper.toAnimeResponseList(animePersistencePort.getTopMonth());
     }
 
 

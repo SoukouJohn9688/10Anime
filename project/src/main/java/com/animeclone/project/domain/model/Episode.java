@@ -3,13 +3,8 @@ package com.animeclone.project.domain.model;
 
 import com.animeclone.project.domain.enumerations.QualityEnum;
 import com.animeclone.project.domain.enumerations.TypeLanguageEnum;
-import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
-import com.animeclone.project.infrastructure.adapter.entity.CommentsEntity;
-import com.animeclone.project.infrastructure.adapter.entity.EpisodeEntity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;

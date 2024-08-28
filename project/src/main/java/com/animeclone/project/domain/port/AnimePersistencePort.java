@@ -23,8 +23,16 @@ public interface AnimePersistencePort {
 
     public Stream<GenreEntity> streamByIds(List<Long> ids);
 
-    List<Anime> FindByName(String name);
-    List<Anime> FindByGenreName(String genreName);
-    List<Anime> FindByType(String type);
+    List<Anime> findByName(String name);
+    List<Anime> findByGenreName(String genreName);
+    List<Anime> findByType(String type);
     Anime getRandomAnime();
+
+    List<Anime> findByYear(int year) throws AnimeNotFoundException;
+
+    List<Anime> getTopToday();
+
+    List<Anime> getTopWeek();
+
+    List<Anime> getTopMonth();
 }

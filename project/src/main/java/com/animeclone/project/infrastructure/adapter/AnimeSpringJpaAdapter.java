@@ -4,16 +4,18 @@ import com.animeclone.project.domain.model.Anime;
 import com.animeclone.project.domain.port.AnimePersistencePort;
 import com.animeclone.project.infrastructure.adapter.entity.AnimeEntity;
 import com.animeclone.project.infrastructure.adapter.entity.GenreEntity;
+import com.animeclone.project.infrastructure.adapter.mapper.AnimeDboMapper;
+import com.animeclone.project.infrastructure.adapter.repository.GenreRepository;
 import com.animeclone.project.infrastructure.adapter.exception.AnimeException;
 import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFoundException;
-import com.animeclone.project.infrastructure.adapter.mapper.AnimeDboMapper;
 import com.animeclone.project.infrastructure.adapter.repository.AnimeRepository;
-import com.animeclone.project.infrastructure.adapter.repository.GenreRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -109,25 +111,29 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         return genreRepository.findAllByGenreIds(genreIds).stream();
     }
 
+
     @Override
-    public List<Anime> FindByName(String name) {
+    public List<Anime> findByName(String name) {
         List<AnimeEntity> nameAnime = animeRepository.findByNameContainingIgnoreCase(name);
         return animeDboMapper.toAnimeDomainList(nameAnime);
     }
 
+
     @Override
-    public List<Anime> FindByGenreName(String genreName) {
+    public List<Anime> findByGenreName(String genreName) {
         List<AnimeEntity> genreNameAnime=animeRepository.findByGenreNameContainingIgnoreCase(genreName);
         return animeDboMapper.toAnimeDomainList(genreNameAnime);
     }
 
+
     @Override
-    public List<Anime> FindByType(String type) {
+    public List<Anime> findByType(String type) {
         //List<AnimeEntity>
         return animeDboMapper.toAnimeDomainList(animeRepository.findAll()
                 .stream()
                 .filter(ani->ani.getAnimeTypeEnum().name().equals(type)).toList());
     }
+
 
     @Override
     public Anime getRandomAnime() {
@@ -135,5 +141,39 @@ public class AnimeSpringJpaAdapter implements AnimePersistencePort {
         Random random = new Random();
         Long randomInt = random.nextLong(listDB.size());
         return animeDboMapper.toDomain(animeRepository.findById(randomInt).get());
+    }
+
+
+    @Override
+    public List<Anime> findByYear(int year) throws AnimeNotFoundException {
+
+            List<AnimeEntity> listDB=animeRepository.findByYear(year);
+            if (listDB.isEmpty()) {
+                throw new AnimeNotFoundException("Anime not found in the database.");
+            }
+
+        return animeDboMapper.toAnimeDomainList(listDB);
+    }
+
+
+    @Override
+    public List<Anime> getTopToday() {
+        return animeDboMapper.toAnimeDomainList(animeRepository.findTopToday());
+    }
+
+    @Override
+    public List<Anime> getTopWeek()
+    {
+        LocalDateTime weekToday=LocalDateTime.now();
+        LocalDateTime weekStart=weekToday.minusDays(7);
+        return animeDboMapper.toAnimeDomainList(animeRepository.findTopWeek(weekStart,weekToday));
+    }
+
+    @Override
+    public List<Anime> getTopMonth() {
+        LocalDateTime monthStart=LocalDateTime.now().withDayOfMonth(1);
+        LocalDateTime currentDate=LocalDateTime.now();
+        LocalDateTime monthEnd=currentDate.with(TemporalAdjusters.lastDayOfMonth());
+        return animeDboMapper.toAnimeDomainList(animeRepository.findTopMonth(monthStart,monthEnd));
     }
 }

@@ -20,10 +20,19 @@ public interface AnimeService {
     ResponseAnimeDTO deleteAnime(Long Id);
     ResponseEpisodeDTO addEpisodeToAnime(Long animeId, RequestEpisodeDTO requestEpisodeDTO);
     ResponseEpisodeDTO addGenreToAnime(Long animeId, RequestGenreDTO requestGenreDTO);
+
     List<ResponseAnimeDTO> findByName(String name);
     List<ResponseAnimeDTO> findByGenreName(String genreName);
     List<ResponseAnimeDTO> findByType(String type);
+    List<ResponseAnimeDTO> findByYear(int year) throws AnimeNotFoundException;
+
     ResponseAnimeDTO getRandomAnime();
+
+    List<ResponseAnimeDTO> listTopAnimeToday();
+    List<ResponseAnimeDTO> listTopAnimeWeek();
+    List<ResponseAnimeDTO> listTopAnimeMonth();
+
+
 
 
 }

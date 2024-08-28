@@ -1,7 +1,5 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
-import com.animeclone.project.domain.model.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
