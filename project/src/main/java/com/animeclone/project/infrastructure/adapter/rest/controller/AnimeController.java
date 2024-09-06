@@ -8,6 +8,7 @@ import com.animeclone.project.infrastructure.adapter.exception.anime.AnimeNotFou
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +25,14 @@ public class AnimeController {
 
     @PostMapping("/registry")
     @ResponseStatus(HttpStatus.OK)
+   // @PreAuthorize("hasRole('Admin-client-role')")
     private ResponseAnimeDTO registerAnime(@Valid @RequestBody RequestAnimeDTO request){
         return animeService.registerAnime(request);
     }
 
     @PostMapping("/edit/{animeId}")
     @ResponseStatus(HttpStatus.OK)
+  //  @PreAuthorize("hasRole('Admin-client-role')")
     private ResponseAnimeDTO editAnime(@PathVariable long animeId
             , @Validated @RequestBody RequestAnimeDTO requestAnimeDTO) throws AnimeNotFoundException {
 
@@ -38,6 +41,7 @@ public class AnimeController {
 
     }
     @GetMapping("/find")
+    //@PreAuthorize("hasRole('Admin-client-role')")
     @ResponseStatus(HttpStatus.OK)
     private List<ResponseAnimeDTO> getAllAnimes(){
         return animeService.getAll();
