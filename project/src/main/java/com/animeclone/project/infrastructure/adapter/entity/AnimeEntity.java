@@ -23,6 +23,7 @@ public class AnimeEntity {
     private long animeId;
 
     private LocalDateTime dateAired;
+    //private LocalDateTime uploadDate;
     private float duration;
     private int views;
     private String premiere;

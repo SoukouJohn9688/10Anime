@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.entity;
 
+import com.animeclone.project.infrastructure.adapter.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

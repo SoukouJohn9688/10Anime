@@ -1,42 +1,50 @@
 package com.animeclone.project.infrastructure.adapter.rest.controller;
 
 import com.animeclone.project.application.usecases.GenreService;
+import com.animeclone.project.domain.model.Genre;
 import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.model.dto.genre.ResponseGenreDTO;
+import com.animeclone.project.infrastructure.adapter.PruebaAdapter;
 import com.animeclone.project.infrastructure.adapter.exception.genre.GenreNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
+
 @RestController
 @RequestMapping("/api/v1/genre")
+@RequiredArgsConstructor
 public class GenreController {
 
-    @Autowired
-    private  GenreService genreService;
-    
+    private final GenreService genreService;
+    private final PruebaAdapter pruebaAdapter;
+
+
+
 
     @GetMapping("/test")
-    //@PreAuthorize("hasAnyRole('admin_client_role')")
-    private String testisimo(){
-        return "Tonto el que lo lea";
+    //@PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @Secured({"ADMIN","USER"})
+    public String testisimo() {
+        List<Genre> listadev = pruebaAdapter.getAll();
+        return "tonto el que lo lea";
     }
-
+    
     @PostMapping("/registry")
-   //@PreAuthorize("hasAnyRole('admin_client_role')")
     private ResponseGenreDTO registerGenre(@RequestBody RequestGenreDTO request){
 
         return genreService.registerGenre(request);
     }
 
     @GetMapping
-    //@PreAuthorize("hasAnyRole('admin_client_role')")
     private ResponseEntity<List<ResponseGenreDTO>> getAll(){
 
             System.out.println("genreService.getGenres() = " + genreService.getGenres());
