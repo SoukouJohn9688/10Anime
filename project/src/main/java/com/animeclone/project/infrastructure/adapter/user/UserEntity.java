@@ -1,7 +1,7 @@
 package com.animeclone.project.infrastructure.adapter.user;
 
 import com.animeclone.project.infrastructure.adapter.entity.CommentsEntity;
-import com.animeclone.project.infrastructure.adapter.role.Role;
+import com.animeclone.project.infrastructure.adapter.role.RoleEnum;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -30,7 +30,7 @@ import static jakarta.persistence.FetchType.EAGER;
 @ToString
 @Table(name = "user_tbl")
 @EntityListeners(AuditingEntityListener.class)
-public class UserEntity implements UserDetails, Principal {
+public class UserEntity implements UserDetails {
 
 
 
@@ -45,27 +45,35 @@ public class UserEntity implements UserDetails, Principal {
     private String email;
 
     private String password;
-    private boolean active;
-    private boolean accountLocked;
-    private boolean enabled;
-    @ManyToMany( fetch = FetchType.LAZY)
-    private List<Role> roles;
+//    private boolean active;
+//    private boolean accountLocked;
+//    private boolean enabled;
 
-    @CreationTimestamp
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdDate;
+    //@ManyToMany(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private RoleEnum roles;
 
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
+//    @CreationTimestamp
+//    @CreatedDate
+//    @Column(nullable = false, updatable = false)
+//    private LocalDateTime createdDate;
+//
+//    @LastModifiedDate
+//    @Column(insertable = false)
+//    private LocalDateTime lastModifiedDate;
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return this.roles
+//                .stream()
+//                .map(r -> new SimpleGrantedAuthority(r.getName()))
+//                .collect(Collectors.toList());
+//    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles
-                .stream()
-                .map(r -> new SimpleGrantedAuthority(r.getName()))
-                .collect(Collectors.toList());
+        return List.of(new SimpleGrantedAuthority(roles.name()));
     }
 
     @Override
@@ -80,31 +88,24 @@ public class UserEntity implements UserDetails, Principal {
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return true;
     }
 
-    @OneToMany(mappedBy = "userEntity")
-    private List<CommentsEntity> comments;
-
-    @Override
-    public String getName() {
-        return "";
-    }
 
 
 }

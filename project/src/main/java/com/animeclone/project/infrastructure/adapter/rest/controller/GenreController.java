@@ -39,6 +39,7 @@ public class GenreController {
     }
     
     @PostMapping("/registry")
+    @Secured({"ADMIN","USER"})
     private ResponseGenreDTO registerGenre(@RequestBody RequestGenreDTO request){
 
         return genreService.registerGenre(request);
