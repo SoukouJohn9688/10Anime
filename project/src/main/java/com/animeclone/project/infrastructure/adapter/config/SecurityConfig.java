@@ -25,14 +25,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableMethodSecurity(securedEnabled = true)
+//@EnableMethodSecurity(securedEnabled = true)
 //@EnableMethodSecurity
 //@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true,jsr250Enabled = true)
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final AuthenticationProvider authProvider;
-    private final JwtAuthenticationEntryPoint entryPoint;
+//    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+//    private final AuthenticationProvider authProvider;
+//    private final JwtAuthenticationEntryPoint entryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -43,20 +43,32 @@ public class SecurityConfig {
                         authRequest
                                 .requestMatchers(
                                         "/api/v1/auth/**",
-                                        "/v1/authenticate"
+                                        "/v1/authenticate",
+                                        "/"
+
                                 ).permitAll()
-                                .requestMatchers("/api/v1/genre/test").hasRole("USER")
+                               .requestMatchers("/api/v1/genre/test").hasAuthority("ROLE_USER")
+                               .requestMatchers("/api/v1/genre/registry").hasAuthority("ROLE_USER")
+
                                 .anyRequest().authenticated()
 
                 )
-                .sessionManagement(sessionManager ->
-                        sessionManager
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .exceptionHandling( exception -> exception
-//                        .authenticationEntryPoint(entryPoint)
-//                )
-                .authenticationProvider(authProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll())
+                .oauth2Login(oauth2 -> oauth2
+                        .loginPage("/login"))
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll());
+//                .sessionManagement(sessionManager ->
+//                        sessionManager
+//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+////                .exceptionHandling( exception -> exception
+////                        .authenticationEntryPoint(entryPoint)
+////                )
+//                .authenticationProvider(authProvider)
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

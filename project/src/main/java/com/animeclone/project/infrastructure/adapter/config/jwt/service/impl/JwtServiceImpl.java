@@ -1,6 +1,7 @@
 package com.animeclone.project.infrastructure.adapter.config.jwt.service.impl;
 
 import com.animeclone.project.infrastructure.adapter.config.jwt.service.JwtService;
+import com.animeclone.project.infrastructure.adapter.user.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -24,17 +25,22 @@ public class JwtServiceImpl implements JwtService {
     @Value("${application.security.jwt.expiration}")
     private long EXPIRATION;
 
+//    @Override
+//    public String getToken(UserDetails user) {
+//        return getToken(new HashMap<>(), user);
+    //}
+
     @Override
-    public String getToken(UserDetails user) {
+    public String getToken(UserEntity user) {
         return getToken(new HashMap<>(), user);
     }
 
     @Override
-    public String getToken(Map<String, Object> extraClaims, UserDetails user) {
+    public String getToken(Map<String, Object> extraClaims, UserEntity user) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(user.getUsername())
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
                 .signWith(getKey(), SignatureAlgorithm.HS256)

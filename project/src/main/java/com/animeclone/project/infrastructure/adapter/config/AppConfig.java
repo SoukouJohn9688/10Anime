@@ -37,27 +37,20 @@ public class AppConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    public UserDetailsService userDetailService() {
-//
-////        userRepository.findByEmail(username);
-//        return username -> {
-//            UserEntity user=userRepository.findByEmail(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("User not found"));};
-//    }
-//
-//
+    
 
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> {
             final UserEntity user = userRepository.findByEmail(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-            return org.springframework.security.core.userdetails.User.builder()
+            var aux= org.springframework.security.core.userdetails.User.builder()
                     .username(user.getEmail())
                     .password(user.getPassword())
                     .build();
+            System.out.println("aux.getUsername() = " + aux.getUsername());
+
+            return aux;
         };
     }
 }

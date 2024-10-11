@@ -29,7 +29,7 @@ import static jakarta.persistence.FetchType.EAGER;
 @SuperBuilder
 @ToString
 @Table(name = "user_tbl")
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 public class UserEntity implements UserDetails {
 
 

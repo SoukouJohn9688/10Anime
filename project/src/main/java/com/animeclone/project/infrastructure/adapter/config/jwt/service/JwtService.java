@@ -1,5 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.config.jwt.service;
 
+import com.animeclone.project.infrastructure.adapter.user.UserEntity;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,9 +10,9 @@ import java.util.Map;
 import java.util.function.Function;
 
 public interface JwtService {
-    String getToken(UserDetails user);
+    String getToken(UserEntity user);
 
-    String getToken(Map<String, Object> extraClaims, UserDetails user);
+    String getToken(Map<String, Object> extraClaims, UserEntity user);
 
     Key getKey();
 

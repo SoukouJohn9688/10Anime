@@ -31,15 +31,15 @@ public class GenreController {
 
 
     @GetMapping("/test")
-    //@PreAuthorize("hasAnyRole('ADMIN','USER')")
-    @Secured({"ADMIN","USER"})
+    //@PreAuthorize("hasAnyRole('ADMIN')")
+    //@Secured({"ADMIN","USER"})
     public String testisimo() {
         List<Genre> listadev = pruebaAdapter.getAll();
         return "tonto el que lo lea";
     }
     
     @PostMapping("/registry")
-    @Secured({"ADMIN","USER"})
+   //@PreAuthorize("hasAnyRole('ADMIN','USER')")
     private ResponseGenreDTO registerGenre(@RequestBody RequestGenreDTO request){
 
         return genreService.registerGenre(request);

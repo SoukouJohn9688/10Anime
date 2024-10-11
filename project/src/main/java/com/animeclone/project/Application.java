@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 //@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 @EnableAsync
 @SpringBootApplication
+//@EnableJpaRepositories(basePackages = "com.animeclone.project.infrastructure.adapter.user")
 public class Application {
 
     public static void main(String[] args) {
