@@ -44,20 +44,23 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         "/api/v1/auth/**",
                                         "/v1/authenticate",
-                                        "/"
+                                        "/",
+                                        "/oauth2/**"
 
                                 ).permitAll()
-                               .requestMatchers("/api/v1/genre/test").hasAuthority("ROLE_USER")
-                               .requestMatchers("/api/v1/genre/registry").hasAuthority("ROLE_USER")
+//                               .requestMatchers("/api/v1/genre/test").hasAuthority("ROLE_USER")
+//                               .requestMatchers("/api/v1/genre/registry").hasAuthority("ROLE_USER")
 
                                 .anyRequest().authenticated()
 
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/api/v1/auth/login")
                         .permitAll())
                 .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login"))
+                        .loginPage("/oauth2/authorization/google")
+                        .defaultSuccessUrl("/api/v1/auth/home", true))
+
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
                         .permitAll());
