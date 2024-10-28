@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationProvider;
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -20,7 +21,12 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
+import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestHeaderRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -38,7 +44,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
+                .cors(withDefaults())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers(
@@ -46,32 +52,31 @@ public class SecurityConfig {
                                         "/v1/authenticate",
                                         "/",
                                         "/oauth2/**"
-
                                 ).permitAll()
-//                               .requestMatchers("/api/v1/genre/test").hasAuthority("ROLE_USER")
-//                               .requestMatchers("/api/v1/genre/registry").hasAuthority("ROLE_USER")
-
                                 .anyRequest().authenticated()
-
+                )
+                .exceptionHandling(exceptionHandling ->
+                        exceptionHandling.defaultAuthenticationEntryPointFor(
+                                new LoginUrlAuthenticationEntryPoint("/api/v1/auth/login"),
+                                new AndRequestMatcher(
+                                        new NegatedRequestMatcher(new RequestHeaderRequestMatcher("X-Requested-With", "XMLHttpRequest")),
+                                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML, MediaType.APPLICATION_JSON)
+                                )
+                        )
                 )
                 .formLogin(form -> form
                         .loginPage("/api/v1/auth/login")
-                        .permitAll())
+                        .permitAll()
+                )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/oauth2/authorization/google")
-                        .defaultSuccessUrl("/api/v1/auth/home", true))
-
+                        .defaultSuccessUrl("/api/v1/home", true)
+                )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
-                        .permitAll());
-//                .sessionManagement(sessionManager ->
-//                        sessionManager
-//                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-////                .exceptionHandling( exception -> exception
-////                        .authenticationEntryPoint(entryPoint)
-////                )
-//                .authenticationProvider(authProvider)
-//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                        .permitAll()
+                );
+
         return http.build();
     }
 
