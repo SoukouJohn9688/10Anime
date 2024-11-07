@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -27,10 +27,13 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
+    @Override
     public AuthResponseDTO login(LoginDTO request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        UserEntity user = userRepository.findByEmail(request.getEmail()).orElseThrow();
-        System.out.println("user.getRoles() = " + user.getRoles());
+
+        UserEntity user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found")); // Manejo de excepción mejorado
+
         String token = jwtService.getToken(user);
 
         return AuthResponseDTO.builder()
@@ -39,10 +42,9 @@ public class AuthServiceImpl implements AuthService {
                 .build();
     }
 
+    @Override
     public AuthResponseDTO register(RegisterDTO request) throws EmailExistsException {
-        Optional<UserEntity> userOptional = userRepository.findByEmail(request.getEmail());
-
-        if (userOptional.isPresent()) {
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new EmailExistsException("Ya existe un usuario con ese email");
         }
 
@@ -53,14 +55,27 @@ public class AuthServiceImpl implements AuthService {
                 .roles(RoleEnum.valueOf(request.getRole().toUpperCase()))
                 .build();
 
-        System.out.println("user.getRoles() = " + user.getRoles());
         userRepository.save(user);
-
-
 
         return AuthResponseDTO.builder()
                 .accessToken(jwtService.getToken(user))
                 .tokenType("Bearer")
                 .build();
     }
+
+    @Override
+    public AuthResponseDTO generateToken(Principal principal) {
+        String email = principal.getName();
+        UserEntity user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        String token = jwtService.getToken(user);
+
+        return AuthResponseDTO.builder()
+                .accessToken(token)
+                .tokenType("Bearer")
+                .build();
+    }
+
+
 }

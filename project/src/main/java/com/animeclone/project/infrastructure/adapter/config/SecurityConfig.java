@@ -51,7 +51,8 @@ public class SecurityConfig {
                                         "/api/v1/auth/**",
                                         "/v1/authenticate",
                                         "/",
-                                        "/oauth2/**"
+                                        "/oauth2/**",
+                                        "/actuator/**"
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -70,7 +71,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/oauth2/authorization/google")
-                        .defaultSuccessUrl("/api/v1/home", true)
+                        .defaultSuccessUrl("http://localhost:3000/", true)
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")

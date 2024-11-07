@@ -23,6 +23,6 @@ services:
       POSTGRES_DB: 10AnimeDB
 
     ports:
-      - "5432:5432"
+      - "6000:5432"
 
 

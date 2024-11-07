@@ -5,11 +5,15 @@ import com.animeclone.project.infrastructure.adapter.auth.AuthService;
 import com.animeclone.project.infrastructure.adapter.auth.LoginDTO;
 import com.animeclone.project.infrastructure.adapter.auth.RegisterDTO;
 import com.animeclone.project.infrastructure.adapter.exception.authexceptions.EmailExistsException;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/api/v1/auth")
@@ -30,13 +34,16 @@ public class AuthController {
 
 
     @GetMapping("/login")
-    public String login() {
-        return "login.html";
+    public void login(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/oauth2/authorization/google");
     }
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
+    @GetMapping("/token")
+    public ResponseEntity<AuthResponseDTO> getToken(Principal principal) {
+        AuthResponseDTO response = authService.generateToken(principal);
+        return ResponseEntity.ok(response);
     }
+
+
 
 }
