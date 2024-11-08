@@ -22,16 +22,6 @@ public class AuthController {
 
     private final AuthService authService;
 
-//    @PostMapping("/login")
-//    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginDTO request) {
-//        return ResponseEntity.ok(authService.login(request));
-//    }
-//
-//    @PostMapping("/register")
-//    public ResponseEntity<AuthResponseDTO> register(@RequestBody @Valid RegisterDTO request) throws EmailExistsException {
-//        return ResponseEntity.ok(authService.register(request));
-//    }
-
 
     @GetMapping("/login")
     public void login(HttpServletResponse response) throws IOException {

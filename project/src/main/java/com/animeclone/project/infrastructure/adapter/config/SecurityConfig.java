@@ -1,7 +1,6 @@
 package com.animeclone.project.infrastructure.adapter.config;
 
-import com.animeclone.project.infrastructure.adapter.config.jwt.filter.JwtAuthenticationEntryPoint;
-import com.animeclone.project.infrastructure.adapter.config.jwt.filter.JwtAuthenticationFilter;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,24 +26,29 @@ import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestHeaderRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-//@EnableMethodSecurity(securedEnabled = true)
-//@EnableMethodSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true,jsr250Enabled = true)
 public class SecurityConfig {
 
-//    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-//    private final AuthenticationProvider authProvider;
-//    private final JwtAuthenticationEntryPoint entryPoint;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(withDefaults())
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowedOrigins(List. of("http://localhost:3000"));
+                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    config.setAllowCredentials(true);
+                    config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+                    return config;
+                }))
                 .authorizeHttpRequests(authRequest ->
                         authRequest
                                 .requestMatchers(
@@ -55,19 +59,6 @@ public class SecurityConfig {
                                         "/actuator/**"
                                 ).permitAll()
                                 .anyRequest().authenticated()
-                )
-                .exceptionHandling(exceptionHandling ->
-                        exceptionHandling.defaultAuthenticationEntryPointFor(
-                                new LoginUrlAuthenticationEntryPoint("/api/v1/auth/login"),
-                                new AndRequestMatcher(
-                                        new NegatedRequestMatcher(new RequestHeaderRequestMatcher("X-Requested-With", "XMLHttpRequest")),
-                                        new MediaTypeRequestMatcher(MediaType.TEXT_HTML, MediaType.APPLICATION_JSON)
-                                )
-                        )
-                )
-                .formLogin(form -> form
-                        .loginPage("/api/v1/auth/login")
-                        .permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/oauth2/authorization/google")

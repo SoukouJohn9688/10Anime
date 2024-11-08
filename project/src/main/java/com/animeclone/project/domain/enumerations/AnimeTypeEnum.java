@@ -4,5 +4,5 @@ public enum AnimeTypeEnum {
     OVA,
     ONA,
     MOVIE,
-    TVSERIES,
+    TV,
 }
