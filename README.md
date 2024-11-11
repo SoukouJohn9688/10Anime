@@ -1,2 +1,2 @@
 # 10Anime
-Learning project clone, developed with Java Springboot and React.
+Training Anime Streaming project, developed with Java Springboot and React.
