@@ -31,7 +31,7 @@ public class GenreController {
 
 
     @GetMapping("/test")
-    //@PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("isAuthenticated()")
     //@Secured({"ADMIN","USER"})
     public String testisimo() {
         List<Genre> listadev = pruebaAdapter.getAll();
@@ -39,9 +39,8 @@ public class GenreController {
     }
     
     @PostMapping("/registry")
-   //@PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @PreAuthorize("isAuthenticated()")
     private ResponseGenreDTO registerGenre(@RequestBody RequestGenreDTO request){
-
         return genreService.registerGenre(request);
     }
 
