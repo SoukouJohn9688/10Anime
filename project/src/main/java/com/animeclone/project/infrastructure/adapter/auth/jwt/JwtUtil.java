@@ -14,7 +14,7 @@ public class JwtUtil {
     @Value("${application.security.jwt.secret.key}")
     private String secretKey;
 //    @Value("${application.security.jwt.expiration}")
-    private static long EXPIRATION_TIME=1000*36;
+    private static long EXPIRATION_TIME=1000*360;
 
     public String generateToken(String subject, Map<String, Object> claims) {
         System.out.println(secretKey);

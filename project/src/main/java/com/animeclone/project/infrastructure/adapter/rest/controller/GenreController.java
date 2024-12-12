@@ -6,6 +6,7 @@ import com.animeclone.project.domain.model.dto.genre.RequestGenreDTO;
 import com.animeclone.project.domain.model.dto.genre.ResponseGenreDTO;
 import com.animeclone.project.infrastructure.adapter.PruebaAdapter;
 import com.animeclone.project.infrastructure.adapter.exception.genre.GenreNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,16 @@ public class GenreController {
     @PostMapping("/registry")
     @PreAuthorize("isAuthenticated()")
     private ResponseGenreDTO registerGenre(@RequestBody RequestGenreDTO request){
+
         return genreService.registerGenre(request);
+    }
+
+    @PostMapping("/registrytest")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<String> handleRequest(HttpServletRequest request) {
+        String url = request.getRequestURL().toString();
+        System.out.println("Incoming request URL: " + url);  // Log the URL here
+        return ResponseEntity.ok("Request received");
     }
 
     @GetMapping

@@ -54,14 +54,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        // Configurar headers CORS
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Max-Age", "3600");
 
-        // Para solicitudes OPTIONS (preflight), retornar OK inmediatamente
+
+
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             return;
@@ -86,7 +81,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                     .getBody();
 
             Date expDate = claims.getExpiration();
-            // Corregido: el token es válido si la fecha de expiración es DESPUÉS de la fecha actual
             return new Date().before(expDate);
         } catch (Exception e) {
             return false;
